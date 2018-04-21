@@ -12,12 +12,14 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.vppank.cricketadventure.R;
+import com.vppank.cricketadventure.app.CricketApplication;
 import com.vppank.cricketadventure.screen.common.BaseActivity;
 import com.vppank.cricketadventure.screen.main.MainActivity;
 import com.vppank.cricketadventure.service.api.ApiClient;
 import com.vppank.cricketadventure.service.api.model.UserResponse;
 
 import com.vppank.cricketadventure.storage.share.UserInfo;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,14 +42,11 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
-        if (loggedIn) {
-            if (AccessToken.getCurrentAccessToken() != null) {
-                String token = AccessToken.getCurrentAccessToken().getToken();
-                if (!TextUtils.isEmpty(token))
-                    handleLogin(token);
-            }
-        }
+//        if (AccessToken.getCurrentAccessToken() != null) {
+//            String token = AccessToken.getCurrentAccessToken().getToken();
+//            if (!TextUtils.isEmpty(token))
+//                handleLogin(token);
+//        }
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email", "user_friends", "public_profile");
 
@@ -70,16 +69,16 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    private void handleLogin(String facebookToken){
+    private void handleLogin(String facebookToken) {
         showLoadingDialog();
         ApiClient.getRestInstance().loginFacebook(facebookToken)
                 .enqueue(new Callback<UserResponse>() {
                     @Override
                     public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                         dissmissLoadingDialog();
-                        if (response.body().isSuccess()){
-                            UserInfo.getInstance().setAccessToken(response.body().getToken());
-                            UserInfo.getInstance().setUser(response.body().getUser());
+                        if (response.body().isSuccess()) {
+                            CricketApplication.getPrefManager().saveAuth(response.body().getToken());
+                            CricketApplication.getPrefManager().saveUser(response.body().getUser());
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             LoginActivity.this.finish();
@@ -87,7 +86,6 @@ public class LoginActivity extends BaseActivity {
                             showMessageError(response.body().getMessage());
                         }
                     }
-
                     @Override
                     public void onFailure(Call<UserResponse> call, Throwable t) {
                         showMessageError("Đăng nhập thất bại");

@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.vppank.cricketadventure.R;
+import com.vppank.cricketadventure.app.CricketApplication;
 import com.vppank.cricketadventure.screen.common.BaseActivity;
 import com.vppank.cricketadventure.screen.history.HistoryFragment;
 import com.vppank.cricketadventure.screen.home.HomeFragment;
@@ -27,6 +28,7 @@ import com.vppank.cricketadventure.screen.meo.MeoFragment;
 import com.vppank.cricketadventure.screen.notification.NotificationFragment;
 import com.vppank.cricketadventure.screen.shopping.ShoppingActivity;
 import com.vppank.cricketadventure.screen.social.SocialFragment;
+import com.vppank.cricketadventure.screen.splash.SplashActivity;
 import com.vppank.cricketadventure.service.api.model.User;
 import com.vppank.cricketadventure.storage.share.UserInfo;
 
@@ -83,6 +85,10 @@ public class MainActivity extends BaseActivity
 
         } else if (id == R.id.nav_logout) {
             drawer.closeDrawer(GravityCompat.START);
+            CricketApplication.getPrefManager().clearPreferences();
+            startActivity(SplashActivity.newIntent(this));
+            finish();
+
 
         } else if (id == R.id.nav_rate) {
             drawer.closeDrawer(GravityCompat.START);
@@ -125,7 +131,7 @@ public class MainActivity extends BaseActivity
         setSupportActionBar(toolbar);
         setTitle("Home");
 
-        user = UserInfo.getInstance().getUser();
+        user = CricketApplication.getPrefManager().getUser();
         if (user == null) finish();
 
 

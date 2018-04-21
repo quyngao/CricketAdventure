@@ -3,6 +3,11 @@ package com.vppank.cricketadventure.storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.vppank.cricketadventure.service.api.model.User;
 
 
 /**
@@ -60,22 +65,33 @@ public class PrefManager {
 //        return list;
 //    }
 
-//    public void saveUser(User user) {
-//        if (user != null) {
-//            Gson gson = new GsonBuilder().create();
-//            String data = gson.toJson(user, User.class);
-//            setString(PrefConstans.EXTRA_USER, data);
-//        }
-//    }
 
-//    public User getUser() {
-//        String modalString = getString(PrefConstans.EXTRA_USER);
-//        if (!TextUtils.isEmpty(modalString)) {
-//            Gson gson = new GsonBuilder().create();
-//            return gson.fromJson(modalString, User.class);
-//        }
-//        return null;
-//    }
+    public void saveAuth(String auth) {
+        setString(PrefConstans.EXTRA_AUTH, auth);
+    }
+
+
+    public String getAuth() {
+        return getString(PrefConstans.EXTRA_AUTH);
+    }
+
+
+    public void saveUser(User user) {
+        if (user != null) {
+            Gson gson = new GsonBuilder().create();
+            String data = gson.toJson(user, User.class);
+            setString(PrefConstans.EXTRA_USER, data);
+        }
+    }
+
+    public User getUser() {
+        String modalString = getString(PrefConstans.EXTRA_USER);
+        if (!TextUtils.isEmpty(modalString)) {
+            Gson gson = new GsonBuilder().create();
+            return gson.fromJson(modalString, User.class);
+        }
+        return null;
+    }
 
     public void clearPreferences() {
         mPreference.edit().clear().commit();

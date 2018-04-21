@@ -6,5 +6,6 @@ package com.vppank.cricketadventure.storage;
 
 public class PrefConstans {
     public static final String EXTRA_AUTH = "EXTRA_AUTH";
+    public static final String EXTRA_USER = "EXTRA_USER";
 
 }
