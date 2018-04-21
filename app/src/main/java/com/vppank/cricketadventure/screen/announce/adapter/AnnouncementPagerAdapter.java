@@ -15,23 +15,20 @@ import java.util.List;
 
 public class AnnouncementPagerAdapter extends FragmentPagerAdapter {
 
-    private final List<Fragment> mFragments = new ArrayList<>();
-    private final List<String> mFragmentTitles = new ArrayList<>();
+    private List<Fragment> mFragments = new ArrayList<>();
+    private List<String> mFragmentTitles = new ArrayList<>();
 
     public AnnouncementPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
     public void addFragments() {
-        Fragment fragment = HistoryFragment.newInstance();
-        mFragments.add(fragment);
+        mFragments = new ArrayList<>();
+        mFragments.add(HistoryFragment.newInstance());
         mFragmentTitles.add("Giao dịch");
-
-        Fragment fragment2 = NotificationFragment.newInstance();
-        mFragments.add(fragment2);
+        mFragments.add(NotificationFragment.newInstance());
         mFragmentTitles.add("Thông báo");
     }
-
 
     @Override
     public Fragment getItem(int position) {

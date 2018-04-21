@@ -14,25 +14,21 @@ import java.util.List;
 
 public class SocialPagerAdapter extends FragmentPagerAdapter {
 
-    private final List<Fragment> mFragments = new ArrayList<>();
-    private final List<String> mFragmentTitles = new ArrayList<>();
+    private List<Fragment> mFragments = new ArrayList<>();
+    private List<String> mFragmentTitles = new ArrayList<>();
 
     public SocialPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
     public void addFragments() {
-        Fragment fragment = FriendsFragment.newInstance(0);
-        mFragments.add(fragment);
-        mFragmentTitles.add("Thông thái");
 
-        Fragment fragment2 = FriendsFragment.newInstance(1);
-        mFragments.add(fragment2);
+        mFragments = new ArrayList<>();
+        mFragments.add(FriendsFragment.newInstance(0));
+        mFragmentTitles.add("Thông thái");
+        mFragments.add(FriendsFragment.newInstance(1));
         mFragmentTitles.add("Béo");
 
-        Fragment fragment3 = FriendsFragment.newInstance(0);
-        mFragments.add(fragment3);
-        mFragmentTitles.add("Chăm chỉ");
     }
 
 

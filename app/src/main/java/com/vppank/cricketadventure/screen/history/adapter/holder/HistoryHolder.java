@@ -45,7 +45,7 @@ public class HistoryHolder extends RecyclerView.ViewHolder {
     public void render(Transation transation) {
         this.transation = transation;
 
-        title.setText(String.format("Giá trị giao dịch %d", transation.getBalance()));
+        title.setText(String.format("Giá trị giao dịch %s", transation.getBalance()));
         description.setText(String.format("+ %d %s", transation.getAddedGameBalance(), itemView.getContext().getString(R.string.grass)));
         time.setText(transation.getCreatedAtString());
 

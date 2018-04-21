@@ -38,4 +38,9 @@ public class AnnouncemetFragment extends BaseFragment {
     protected void loadData() {
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

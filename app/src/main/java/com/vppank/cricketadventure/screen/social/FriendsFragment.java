@@ -112,7 +112,7 @@ public class FriendsFragment extends BaseFragment {
         Comparator<Friend> comparator = new Comparator<Friend>() {
             @Override
             public int compare(Friend left, Friend right) {
-                return typeSort == 0 ? left.getTotalTravel() - right.getTotalTravel() : left.getTotalWeed() - right.getTotalWeed();
+                return typeSort == 0 ? - left.getTotalTravel() + right.getTotalTravel()  : - left.getTotalWeed() + right.getTotalWeed();
             }
         };
         Collections.sort(friends, comparator);
