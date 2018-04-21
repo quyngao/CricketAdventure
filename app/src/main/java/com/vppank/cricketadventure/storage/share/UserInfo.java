@@ -1,4 +1,4 @@
-package com.vppank.cricketadventure.share;
+package com.vppank.cricketadventure.storage.share;
 
 import com.vppank.cricketadventure.service.api.model.User;
 

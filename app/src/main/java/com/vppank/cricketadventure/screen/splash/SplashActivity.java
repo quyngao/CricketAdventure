@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 
 import com.vppank.cricketadventure.R;
 import com.vppank.cricketadventure.screen.common.BaseActivity;
+import com.vppank.cricketadventure.screen.login.LoginActivity;
 import com.vppank.cricketadventure.screen.main.MainActivity;
 import com.vppank.cricketadventure.screen.shopping.ShoppingActivity;
 
@@ -34,7 +35,7 @@ public class SplashActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(MainActivity.newIntent(SplashActivity.this));
+                startActivity(LoginActivity.newIntent(SplashActivity.this));
                 finish();
             }
         }, 1000);
