@@ -7,6 +7,7 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.vppank.cricketadventure.service.api.model.TranQuantity;
 import com.vppank.cricketadventure.service.api.model.User;
 
 
@@ -51,6 +52,11 @@ public class PrefManager {
         mPreference.edit().putBoolean(key, value).commit();
     }
 
+    public boolean getBoolean(String key) {
+        return mPreference.getBoolean(key, false);
+
+    }
+
 
 //    public void setListALarm(List<String> list) {
 //        Gson gson = new Gson();
@@ -84,6 +90,14 @@ public class PrefManager {
         }
     }
 
+    public void saveTranQuanlity(TranQuantity tranQuantity) {
+        if (tranQuantity != null) {
+            Gson gson = new GsonBuilder().create();
+            String data = gson.toJson(tranQuantity, TranQuantity.class);
+            setString(PrefConstans.EXTRA_TRANSATION, data);
+        }
+    }
+
     public User getUser() {
         String modalString = getString(PrefConstans.EXTRA_USER);
         if (!TextUtils.isEmpty(modalString)) {
@@ -91,6 +105,31 @@ public class PrefManager {
             return gson.fromJson(modalString, User.class);
         }
         return null;
+    }
+
+    public TranQuantity getTranQuantity() {
+        String modalString = getString(PrefConstans.EXTRA_TRANSATION);
+        if (!TextUtils.isEmpty(modalString)) {
+            Gson gson = new GsonBuilder().create();
+            return gson.fromJson(modalString, TranQuantity.class);
+        }
+        return null;
+    }
+
+    public void setHat(boolean hat) {
+        setBoolean(PrefConstans.EXTRA_HAS_HAT, hat);
+    }
+
+    public void setGrasses(boolean grasses) {
+        setBoolean(PrefConstans.EXTRA_HAS_GRASSES, grasses);
+    }
+
+    public boolean getHat() {
+        return getBoolean(PrefConstans.EXTRA_HAS_HAT);
+    }
+
+    public boolean getGrasses() {
+        return getBoolean(PrefConstans.EXTRA_HAS_GRASSES);
     }
 
     public void clearPreferences() {

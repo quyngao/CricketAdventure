@@ -17,6 +17,9 @@ public class User implements Serializable {
     @SerializedName("name")
     private String name;
 
+    @SerializedName("birthday")
+    private String birthday;
+
     @SerializedName("email")
     private String email;
 
@@ -28,6 +31,7 @@ public class User implements Serializable {
 
     @SerializedName("hasCreditCard")
     private boolean hasCreditCard;
+
 
     public String getId() {
         return id;
@@ -67,6 +71,14 @@ public class User implements Serializable {
 
     public void setHasInternetBanking(boolean hasInternetBanking) {
         this.hasInternetBanking = hasInternetBanking;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public boolean isHasCreditCard() {

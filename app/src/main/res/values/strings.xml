@@ -17,5 +17,10 @@
 
     <string name="facebook_app_id">201828170596445</string>
     <string name="fb_login_protocol_scheme">fb201828170596445</string>
+    <string name="content_has_credit">Cập nhật mũ cho mèo nè</string>
+    <string name="content_hasnt_credit">Đăng kí thẻ Credit để nhận phần quà cho MeO</string>
+    <string name="content_has_banking">Cập nhật kính cho mèo nè </string>
+    <string name="content_hasnt_banking">Đăng kí Internet Banking để nhận quà cho MeO nào</string>
+    <string name="grass">🍀</string>
 
 </resources>

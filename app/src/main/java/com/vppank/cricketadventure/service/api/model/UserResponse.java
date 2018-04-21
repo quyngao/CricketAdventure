@@ -11,6 +11,9 @@ public class UserResponse extends BaseResonse {
     @SerializedName("user")
     private User user;
 
+    @SerializedName("tranQuantity")
+    private TranQuantity tranQuantity;
+
     @SerializedName("accessToken")
     private String token;
 
@@ -29,4 +32,9 @@ public class UserResponse extends BaseResonse {
     public void setToken(String token) {
         this.token = token;
     }
+
+    public TranQuantity getTranQuantity() {
+        return tranQuantity;
+    }
+
 }

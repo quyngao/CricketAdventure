@@ -156,7 +156,7 @@ public class MainActivity extends BaseActivity
         userName.setText(user.getName());
         date.setText(user.getEmail());
 
-        balance.setText(user.getBalance());
+        balance.setText(getString(R.string.grass) + user.getBalance());
 
 
         headerLayout.setOnClickListener(new View.OnClickListener() {

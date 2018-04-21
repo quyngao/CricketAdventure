@@ -79,6 +79,7 @@ public class LoginActivity extends BaseActivity {
                         if (response.body().isSuccess()) {
                             CricketApplication.getPrefManager().saveAuth(response.body().getToken());
                             CricketApplication.getPrefManager().saveUser(response.body().getUser());
+                            CricketApplication.getPrefManager().saveTranQuanlity(response.body().getTranQuantity());
                             startActivity(MainActivity.newIntent(LoginActivity.this));
                             LoginActivity.this.finish();
                         } else {
