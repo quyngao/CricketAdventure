@@ -20,6 +20,7 @@ import com.vppank.cricketadventure.service.api.model.TranQuantity;
 import com.vppank.cricketadventure.service.api.model.TransationResponse;
 import com.vppank.cricketadventure.service.api.model.User;
 import com.vppank.cricketadventure.service.api.model.UserResponse;
+import com.vppank.cricketadventure.storage.share.UserInfo;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -132,7 +133,8 @@ public class HomeFragment extends BaseFragment {
 
         userName.setText(user.getName());
         birthday.setText("Ngày sinh: 02/01/1994");
-        description.setText(user.getId());
+        description.setText(String.format("Thu thập: %d \uD83C\uDF40 \nKhám phá: %d km", user.getTotalWeed(), user.getTotalTravel()));
+
 
         tvHasCredit.setText(user.isHasCreditCard() ? getString(R.string.content_has_credit) : getString(R.string.content_hasnt_credit));
         tvHasBanking.setText(user.isHasInternetBanking() ? getString(R.string.content_has_banking) : getString(R.string.content_hasnt_banking));
@@ -149,19 +151,19 @@ public class HomeFragment extends BaseFragment {
         if (user.isHasCreditCard()) {
             hasCredit.setImageResource(R.drawable.ic_hat);
         }
-        if(user.isHasCreditCard()&& user.isHasInternetBanking()){
+        if (user.isHasCreditCard() && user.isHasInternetBanking()) {
             addService.setVisibility(View.GONE);
         }
 
-        viewDebit.setBackgroundResource(tranQuantity.getType0() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
-        viewCredit.setBackgroundResource(tranQuantity.getType1() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
-        viewDeposit.setBackgroundResource(tranQuantity.getType2() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
-        viewWithdrawl.setBackgroundResource(tranQuantity.getType3() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
-        viewTelco.setBackgroundResource(tranQuantity.getType4() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
-        viewUtility.setBackgroundResource(tranQuantity.getType5() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
+//        viewDebit.setBackgroundResource(tranQuantity.getType0() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
+//        viewCredit.setBackgroundResource(tranQuantity.getType1() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
+//        viewDeposit.setBackgroundResource(tranQuantity.getType2() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
+//        viewWithdrawl.setBackgroundResource(tranQuantity.getType3() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
+//        viewTelco.setBackgroundResource(tranQuantity.getType4() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
+//        viewUtility.setBackgroundResource(tranQuantity.getType5() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
 
-        tvCredit.setText(String.format("Credit Card (%s)", tranQuantity.getType0()));
-        tvDebit.setText(String.format("Debit Card(%s)", tranQuantity.getType1()));
+        tvDebit.setText(String.format("Debit Card(%s)", tranQuantity.getType0()));
+        tvCredit.setText(String.format("Credit Card (%s)", tranQuantity.getType1()));
         tvDeposit.setText(String.format("Gửi tiền (%s)", tranQuantity.getType2()));
         tvWithdrawl.setText(String.format("Rút tiền (%s)", tranQuantity.getType3()));
         tvTelco.setText(String.format("Ngoại khối (%s)", tranQuantity.getType4()));
@@ -247,7 +249,6 @@ public class HomeFragment extends BaseFragment {
     }
 
     public void refreshData() {
-        showLoadingDialog();
         ApiClient.getRestInstance().getProfile()
                 .enqueue(new Callback<UserResponse>() {
                     @Override
@@ -256,6 +257,8 @@ public class HomeFragment extends BaseFragment {
                         if (response.body().isSuccess()) {
                             CricketApplication.getPrefManager().saveUser(response.body().getUser());
                             CricketApplication.getPrefManager().saveTranQuanlity(response.body().getTranQuantity());
+                            UserInfo.getInstance().setUser(response.body().getUser());
+                            UserInfo.getInstance().setAccessToken(response.body().getToken());
                             user = response.body().getUser();
                             tranQuantity = response.body().getTranQuantity();
                             loadData();

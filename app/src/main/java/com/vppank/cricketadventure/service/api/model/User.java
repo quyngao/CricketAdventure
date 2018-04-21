@@ -24,14 +24,30 @@ public class User implements Serializable {
     @SerializedName("email")
     private String email;
 
+    @SerializedName("avatar")
+    private String avatar;
+
     @SerializedName("balance")
-    private String balance;
+    private int balance;
+
+    @SerializedName("totalWeed")
+    private int totalWeed;
+
+
+    @SerializedName("totalTravel")
+    private int totalTravel;
 
     @SerializedName("hasInternetBanking")
     private boolean hasInternetBanking;
 
     @SerializedName("hasCreditCard")
     private boolean hasCreditCard;
+
+    public String getAvatar() {
+        return avatar;
+    }
+    @SerializedName("atHome")
+    private boolean atHome = true;
 
     @SerializedName("items")
     private ArrayList<Integer> items = new ArrayList<>();
@@ -63,11 +79,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 
@@ -77,6 +93,14 @@ public class User implements Serializable {
 
     public void setHasInternetBanking(boolean hasInternetBanking) {
         this.hasInternetBanking = hasInternetBanking;
+    }
+
+    public int getTotalWeed() {
+        return totalWeed;
+    }
+
+    public int getTotalTravel() {
+        return totalTravel;
     }
 
     public String getBirthday() {
@@ -109,5 +133,13 @@ public class User implements Serializable {
 
     public void setItemsInBalo(ArrayList<Integer> itemsInBalo) {
         this.itemsInBalo = itemsInBalo;
+    }
+
+    public boolean isAtHome() {
+        return atHome;
+    }
+
+    public void setAtHome(boolean atHome) {
+        this.atHome = atHome;
     }
 }

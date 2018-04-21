@@ -1,5 +1,7 @@
 package com.vppank.cricketadventure.screen.history;
 
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +28,9 @@ public class HistoryFragment extends BaseFragment {
     @BindView(R.id.recycler_view)
     protected RecyclerView mRecyclerView;
 
+    @BindView(R.id.swipeRefreshLayout)
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
+
     List<Transation> transations;
     HistoryAdapter mAdapter;
 
@@ -33,6 +38,8 @@ public class HistoryFragment extends BaseFragment {
         HistoryFragment fragment = new HistoryFragment();
         return fragment;
     }
+
+
 
 
     @Override
@@ -50,6 +57,17 @@ public class HistoryFragment extends BaseFragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refeshData();
+            }
+        });
+
+        mSwipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+        mSwipeRefreshLayout.setDistanceToTriggerSync(14);// in dips
+        mSwipeRefreshLayout.setSize(SwipeRefreshLayout.LARGE);// LARGE also can be used
     }
 
     @Override
@@ -64,11 +82,11 @@ public class HistoryFragment extends BaseFragment {
     }
 
     private void refeshData() {
-        showLoadingDialog();
+        mSwipeRefreshLayout.setRefreshing(true);
         ApiClient.getRestInstance().getAllTransation().enqueue(new Callback<TransationsResonse>() {
             @Override
             public void onResponse(Call<TransationsResonse> call, Response<TransationsResonse> response) {
-                dissmissLoadingDialog();
+                mSwipeRefreshLayout.setRefreshing(false);
                 if (response.body().isSuccess()) {
                     transations = response.body().getTransations();
                     mAdapter.setTransations(transations);
@@ -79,7 +97,8 @@ public class HistoryFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<TransationsResonse> call, Throwable t) {
-                dissmissLoadingDialog();
+                mSwipeRefreshLayout.setRefreshing(false);
+
                 showMessageError("Lỗi kết nối server");
             }
         });

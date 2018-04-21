@@ -1,6 +1,11 @@
 package com.vppank.cricketadventure.service.api;
 
 
+import com.vppank.cricketadventure.service.api.model.FriendsResponse;
+import com.vppank.cricketadventure.service.api.model.NotificationsResponse;
+import com.vppank.cricketadventure.service.api.model.BaseResonse;
+import com.vppank.cricketadventure.service.api.model.GetMailResponse;
+import com.vppank.cricketadventure.service.api.model.GetUserResponse;
 import com.vppank.cricketadventure.service.api.model.TransationResponse;
 import com.vppank.cricketadventure.service.api.model.TransationsResonse;
 import com.vppank.cricketadventure.service.api.model.UserResponse;
@@ -31,6 +36,12 @@ public interface RestInterface {
     @GET(UrlConstants.ALL_TRANSATION)
     Call<TransationsResonse> getAllTransation();
 
+    @GET(UrlConstants.NOTIFICATIONS)
+    Call<NotificationsResponse> getNotifications();
+
+    @GET(UrlConstants.FRIEND_LIST)
+    Call<FriendsResponse> getFriends();
+
     @POST(UrlConstants.CREATE_TRANSATION)
     @FormUrlEncoded
     Call<TransationResponse> creatTransation(@Field("type") int type);
@@ -39,4 +50,17 @@ public interface RestInterface {
     @FormUrlEncoded
     Call<UserResponse> registerService(@Field("hasInternetBanking") boolean hasInternetBanking, @Field("hasCreditCard") boolean hasCreditCard);
 
+    @POST(UrlConstants.START_TRIP)
+    @FormUrlEncoded
+    Call<BaseResonse> startTrip(@Query("token") String token, @Field("item1") int item1, @Field("item2") int item2, @Field("item3") int item3);
+
+    @GET(UrlConstants.GET_MAIL)
+    Call<GetMailResponse> getMails(@Query("token") String token);
+
+    @GET(UrlConstants.GET_PROFILE)
+    Call<GetUserResponse> getUser(@Query("token") String token);
+
+    @POST(UrlConstants.BUY_ITEM)
+    @FormUrlEncoded
+    Call<BaseResonse> buyItem(@Query("token") String token, @Field("code") int code);
 }

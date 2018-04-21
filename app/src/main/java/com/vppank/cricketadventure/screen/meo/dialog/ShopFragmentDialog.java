@@ -90,8 +90,22 @@ public class ShopFragmentDialog extends DialogFragment {
         @Override
         public void onBindViewHolder(ItemViewHolder holder, int position) {
             holder.icon.setImageDrawable(getResources().getDrawable(LIST_ITEMS.get(position).getIcon()));
-            holder.txtPrice.setText(String.valueOf(LIST_ITEMS.get(position).getPrice()));
+            holder.txtPrice.setText(String.valueOf(LIST_ITEMS.get(position).getPrice()) + getString(R.string.grass));
             holder.txtTitle.setText(LIST_ITEMS.get(position).getName());
+            boolean hasItem = false;
+
+            for (int i = 0; i < UserInfo.getInstance().getUser().getItems().size(); i++){
+                if (UserInfo.getInstance().getUser().getItems().get(i) == position){
+                    hasItem = true;
+                    break;
+                }
+            }
+
+            if (hasItem) {
+                holder.btnBuy.setEnabled(false);
+            } else {
+                holder.btnBuy.setEnabled(true);
+            }
         }
 
         @Override
@@ -120,19 +134,8 @@ public class ShopFragmentDialog extends DialogFragment {
                 this.txtTitle = itemView.findViewById(R.id.txtName);
                 this.txtPrice = itemView.findViewById(R.id.txtPrice);
                 this.icon =  itemView.findViewById(R.id.icon);
-                boolean hasItem = false;
-                for (int i = 0; i < UserInfo.getInstance().getUser().getItems().size(); i++){
-                    if (UserInfo.getInstance().getUser().getItems().get(i).equals(getAdapterPosition())){
-                        hasItem = true;
-                        break;
-                    }
-                }
                 this.btnBuy = itemView.findViewById(R.id.btnBuy);
-                if (hasItem) {
-                    this.btnBuy.setEnabled(false);
-                } else {
-                    this.btnBuy.setEnabled(true);
-                }
+
 
                 this.btnBuy.setOnClickListener(new View.OnClickListener() {
                     @Override

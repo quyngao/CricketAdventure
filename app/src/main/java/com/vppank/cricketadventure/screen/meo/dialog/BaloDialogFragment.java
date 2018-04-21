@@ -1,6 +1,7 @@
 package com.vppank.cricketadventure.screen.meo.dialog;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -11,10 +12,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.vppank.cricketadventure.R;
+import com.vppank.cricketadventure.service.api.ApiClient;
+import com.vppank.cricketadventure.service.api.model.BaseResonse;
 import com.vppank.cricketadventure.service.api.model.Item;
 import com.vppank.cricketadventure.storage.share.UserInfo;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BaloDialogFragment extends DialogFragment{
 
@@ -174,4 +181,43 @@ public class BaloDialogFragment extends DialogFragment{
         });
     }
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (UserInfo.getInstance().getUser().getItemsInBalo().size() == 3){
+            int item1 = 0;
+            int item2 = 0;
+            int item3 = 0;
+            for (Integer i: UserInfo.getInstance().getUser().getItemsInBalo()){
+                if ( 0 <= i && i <= 2) {
+                    item1 = i;
+                }
+                if ( 3 <= i && i <= 5) {
+                    item2 = i;
+                }
+                if ( 6 <= i && i <= 8) {
+                    item3 = i;
+                }
+            }
+            ApiClient.getRestInstance().startTrip(UserInfo.getInstance().getAccessToken(), item1, item2, item3)
+                    .enqueue(new Callback<BaseResonse>() {
+                        @Override
+                        public void onResponse(Call<BaseResonse> call, Response<BaseResonse> response) {
+                            Log.e("onResponse", "onResponse");
+                            UserInfo.getInstance().getUser().getItemsInBalo().clear();
+                        }
+
+                        @Override
+                        public void onFailure(Call<BaseResonse> call, Throwable t) {
+                            Log.e("onFailure", "onFailure");
+                        }
+                    });
+        }
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        super.onCancel(dialog);
+        Log.e("onCancel", "onCancel");
+    }
 }

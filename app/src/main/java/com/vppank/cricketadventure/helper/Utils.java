@@ -71,4 +71,23 @@ public class Utils {
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
 
+//    public static void share(Context context, Article article) {
+//        String builder = "\n\n\nXã Luận VN\n\n" +
+//                "Nội dung: %s\n" +
+//                "Link: %s\n";
+//
+//        String message = String.format(builder, article.getDescription(), article.getLink());
+//
+//        try {
+//
+//            Intent intent = new Intent(Intent.ACTION_SEND);
+//            intent.setType("text/plain");
+//            intent.putExtra(Intent.EXTRA_SUBJECT, article.getTitle());
+//            intent.putExtra(Intent.EXTRA_TEXT, message);
+//            context.startActivity(Intent.createChooser(intent, "Chia sẻ"));
+//        } catch (Exception e) {
+//
+//        }
+//    }
+
 }

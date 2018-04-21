@@ -16,6 +16,7 @@ import com.vppank.cricketadventure.app.CricketApplication;
 import com.vppank.cricketadventure.screen.common.BaseActivity;
 import com.vppank.cricketadventure.screen.main.MainActivity;
 import com.vppank.cricketadventure.service.api.ApiClient;
+import com.vppank.cricketadventure.service.api.model.User;
 import com.vppank.cricketadventure.service.api.model.UserResponse;
 
 import com.vppank.cricketadventure.storage.share.UserInfo;
@@ -80,6 +81,10 @@ public class LoginActivity extends BaseActivity {
                             CricketApplication.getPrefManager().saveAuth(response.body().getToken());
                             CricketApplication.getPrefManager().saveUser(response.body().getUser());
                             CricketApplication.getPrefManager().saveTranQuanlity(response.body().getTranQuantity());
+
+                            UserInfo.getInstance().setUser(response.body().getUser());
+                            UserInfo.getInstance().setAccessToken(response.body().getToken());
+                            
                             startActivity(MainActivity.newIntent(LoginActivity.this));
                             LoginActivity.this.finish();
                         } else {

@@ -29,11 +29,11 @@
     <Button
         android:layout_marginLeft="@dimen/_30sdp"
         android:visibility="visible"
-        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_95sdp"
         android:id="@+id/btnBalo"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_50sdp"
-        android:background="@android:color/transparent"/>
+        android:background="@drawable/balo"/>
 
     <Button
         android:layout_marginLeft="@dimen/_10sdp"

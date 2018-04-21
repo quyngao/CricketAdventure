@@ -4,27 +4,27 @@
     <item
         android:id="@+id/action_home"
         android:enabled="true"
-        android:icon="@drawable/ic_menu_send"
+        android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/text_home"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_history"
         android:enabled="true"
-        android:icon="@drawable/ic_menu_camera"
+        android:icon="@drawable/ic_history_black_24dp"
         android:title="@string/text_history"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/action_meo"
         android:enabled="true"
-        android:icon="@drawable/ic_menu_gallery"
+        android:icon="@drawable/ic_meo"
         android:title="@string/text_meo"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/action_notification"
         android:enabled="true"
-        android:icon="@drawable/ic_menu_manage"
+        android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/text_noti"
         app:showAsAction="ifRoom"/>
 
