@@ -17,12 +17,10 @@ import android.widget.TextView;
 
 import com.vppank.cricketadventure.R;
 import com.vppank.cricketadventure.service.api.model.Item;
+import com.vppank.cricketadventure.storage.share.UserInfo;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ShopFragmentDialog extends DialogFragment {
 
@@ -69,7 +67,6 @@ public class ShopFragmentDialog extends DialogFragment {
         listItem = v.findViewById(R.id.list_item);
         listItem.setLayoutManager(new LinearLayoutManager(getActivity()));
         listItem.setAdapter(new ShopItemAdapter());
-
     }
 
     @Override
@@ -78,7 +75,6 @@ public class ShopFragmentDialog extends DialogFragment {
     }
 
     public interface OnBoughtItemListener {
-        // TODO: Update argument type and name
         void onBoughtItem(int code);
     }
 
@@ -116,6 +112,7 @@ public class ShopFragmentDialog extends DialogFragment {
 
             public void onBuyClicked(View v) {
                 listener.onBoughtItem(getAdapterPosition());
+                this.btnBuy.setEnabled(false);
             }
 
             public ItemViewHolder(View itemView) {
@@ -123,7 +120,20 @@ public class ShopFragmentDialog extends DialogFragment {
                 this.txtTitle = itemView.findViewById(R.id.txtName);
                 this.txtPrice = itemView.findViewById(R.id.txtPrice);
                 this.icon =  itemView.findViewById(R.id.icon);
+                boolean hasItem = false;
+                for (int i = 0; i < UserInfo.getInstance().getUser().getItems().size(); i++){
+                    if (UserInfo.getInstance().getUser().getItems().get(i).equals(getAdapterPosition())){
+                        hasItem = true;
+                        break;
+                    }
+                }
                 this.btnBuy = itemView.findViewById(R.id.btnBuy);
+                if (hasItem) {
+                    this.btnBuy.setEnabled(false);
+                } else {
+                    this.btnBuy.setEnabled(true);
+                }
+
                 this.btnBuy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

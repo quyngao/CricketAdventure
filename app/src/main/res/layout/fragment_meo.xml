@@ -5,15 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <ImageView
-        android:layout_centerInParent="true"
-        android:src="@drawable/meo_chinh_dien"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_90sdp"
-        android:id="@+id/imgMeo"/>
     <Button
         android:id="@+id/btnShop"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@color/colorPrimary"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ic_shop"/>
+    <ImageView
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_phong"/>
+    <ImageView
+        android:layout_marginRight="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_65sdp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/meo_chinh_dien"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:id="@+id/imgMeo"/>
+
+    <Button
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:visibility="visible"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:id="@+id/btnBalo"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:visibility="visible"
+        android:layout_marginTop="@dimen/_230sdp"
+        android:id="@+id/btnMail"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@android:color/transparent"/>
+
 </RelativeLayout>
