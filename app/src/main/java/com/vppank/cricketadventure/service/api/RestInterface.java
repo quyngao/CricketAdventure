@@ -47,4 +47,6 @@ public interface RestInterface {
     @FormUrlEncoded
     Call<UserResponse> registerService(@Field("hasInternetBanking") boolean hasInternetBanking, @Field("hasCreditCard") boolean hasCreditCard);
 
+
+
 }
