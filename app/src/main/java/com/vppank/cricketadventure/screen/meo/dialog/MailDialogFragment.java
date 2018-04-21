@@ -13,9 +13,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.vppank.cricketadventure.R;
+import com.vppank.cricketadventure.service.api.ApiClient;
+import com.vppank.cricketadventure.service.api.model.GetMailResponse;
+import com.vppank.cricketadventure.service.api.model.Mail;
+import com.vppank.cricketadventure.storage.share.UserInfo;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MailDialogFragment extends DialogFragment {
+
+    private ArrayList<Mail> listMail = new ArrayList<>();
+
+    RecyclerView recyclerView;
 
     public MailDialogFragment() {
         // Required empty public constructor
@@ -38,13 +53,30 @@ public class MailDialogFragment extends DialogFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mail_dialog, container, false);
         initView(v);
+        getData();
         return v;
     }
 
     private void initView(View v) {
-        RecyclerView recyclerView = v.findViewById(R.id.list_item);
+        recyclerView = v.findViewById(R.id.list_item);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(new MailItemDialogAdapter());
+    }
+
+    public void getData() {
+        ApiClient.getRestInstance().getMails(UserInfo.getInstance().getAccessToken())
+                .enqueue(new Callback<GetMailResponse>() {
+                    @Override
+                    public void onResponse(Call<GetMailResponse> call, Response<GetMailResponse> response) {
+                        listMail = response.body().getMails();
+                        recyclerView.getAdapter().notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFailure(Call<GetMailResponse> call, Throwable t) {
+
+                    }
+                });
     }
 
     class MailItemDialogAdapter extends RecyclerView.Adapter<MailItemDialogAdapter.ItemViewHolder> {
@@ -58,31 +90,36 @@ public class MailDialogFragment extends DialogFragment {
 
         @Override
         public void onBindViewHolder(MailItemDialogAdapter.ItemViewHolder holder, int position) {
-
+            Picasso.get().load(listMail.get(position).getImage()).into(holder.imageView);
+            holder.txtTime.setText(listMail.get(position).getCreatedAtString());
         }
 
         @Override
         public int getItemCount() {
-            return 20;
+            return listMail.size();
         }
 
         class ItemViewHolder extends RecyclerView.ViewHolder {
 
 
-            ImageView icon;
+            ImageView imageView;
 
-            TextView txtTitle;
+            TextView txtTime;
 
-            TextView txtPrice;
-
-            Button btnBuy;
-
-            public void onBuyClicked(View v) {
-
-            }
 
             public ItemViewHolder(View itemView) {
                 super(itemView);
+                imageView = itemView.findViewById(R.id.image);
+                txtTime = itemView.findViewById(R.id.time);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ShareImageDialog baloDialog = ShareImageDialog.newInstance(listMail.get(getLayoutPosition()));//where MyFragment is my fragment I want to show
+                        baloDialog.setCancelable(true);
+
+                        baloDialog.show(getActivity().getSupportFragmentManager(), "baloDialog");
+                    }
+                });
 
             }
         }

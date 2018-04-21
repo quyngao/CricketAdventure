@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "423362333051",
+    "firebase_url": "https://blm-vpmeo.firebaseio.com",
+    "project_id": "blm-vpmeo",
+    "storage_bucket": "blm-vpmeo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423362333051:android:4bc01d2ee3dbc7d4",
+        "android_client_info": {
+          "package_name": "com.vppank.cricketadventure"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423362333051-okhnjp0spocl30i6ml4hn8qgqolm2guk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vppank.cricketadventure",
+            "certificate_hash": "62236f7a50d2feb8a3bd24da620d19ea25397b57"
+          }
+        },
+        {
+          "client_id": "423362333051-mgtg5deb8oj63dsn832uuk9jbiq9iq3u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxcXWfUD2ULxgVbJ935uk3rx_W4Fs8Ig0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423362333051-mgtg5deb8oj63dsn832uuk9jbiq9iq3u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
