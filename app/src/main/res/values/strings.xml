@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CricketAdventure</string>
+    <string name="app_name">VP MeO</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -9,4 +9,21 @@
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="default_notification_channel_id">new</string>
     <string name="default_notification_channel_name">News</string>
+    <string name="text_home">Home</string>
+    <string name="text_history">History</string>
+    <string name="text_meo">MEO</string>
+    <string name="text_noti">Notification</string>
+    <string name="text_social">Social</string>
+
+    <string name="facebook_app_id">201828170596445</string>
+    <string name="fb_login_protocol_scheme">fb201828170596445</string>
+    <string name="content_has_credit">Cập nhật mũ cho mèo nè</string>
+    <string name="content_hasnt_credit">Đăng kí thẻ Credit để nhận phần quà cho MeO</string>
+    <string name="content_has_banking">Cập nhật kính cho mèo nè </string>
+    <string name="content_hasnt_banking">Đăng kí Internet Banking để nhận quà cho MeO nào</string>
+    <string name="grass">🍀</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

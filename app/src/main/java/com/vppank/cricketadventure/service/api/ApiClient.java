@@ -2,6 +2,8 @@ package com.vppank.cricketadventure.service.api;
 
 import android.util.Log;
 
+import com.vppank.cricketadventure.app.CricketApplication;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ApiClient {
-    public static final String BASE_URL = "http://144.202.4.51:3000";
+    public static final String BASE_URL = "http://150.95.111.30:8888/";
     private static Retrofit retrofit = null;
     private static RestInterface mRestIntances;
 
@@ -30,8 +32,12 @@ public class ApiClient {
                     .addInterceptor(new Interceptor() {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
-                            Request request = chain.request();
-
+                            Request original = chain.request();
+                            Request.Builder builder = original.newBuilder();
+                            builder.header("x-access-token", CricketApplication.getPrefManager().getAuth());
+                            Request request = builder
+                                    .method(original.method(), original.body())
+                                    .build();
                             Response response = chain.proceed(request);
 
                             int tryCount = 0;
@@ -60,7 +66,6 @@ public class ApiClient {
         }
         return mRestIntances;
     }
-
 
 
 }

@@ -3,6 +3,7 @@ package com.vppank.cricketadventure.service.api.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -17,63 +18,96 @@ public class User implements Serializable {
     @SerializedName("name")
     private String name;
 
-    @SerializedName("phone")
-    private String phone;
+    @SerializedName("birthday")
+    private String birthday;
 
-    @SerializedName("imei")
-    private String imei;
+    @SerializedName("email")
+    private String email;
 
-    @SerializedName("date")
-    private String date;
+    @SerializedName("balance")
+    private String balance;
 
-    @SerializedName("createdAt")
-    private String createdAt;
+    @SerializedName("hasInternetBanking")
+    private boolean hasInternetBanking;
 
-    private Date expiredTime;
+    @SerializedName("hasCreditCard")
+    private boolean hasCreditCard;
 
+    @SerializedName("items")
+    private ArrayList<Integer> items = new ArrayList<>();
+
+    @SerializedName("balo")
+    private ArrayList<Integer> itemsInBalo = new ArrayList<>();
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getImei() {
-        return imei;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public String getEmail() {
+        return email;
     }
 
-    public void setImei(String imei) {
-        this.imei = imei;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public String getBalance() {
+        return balance;
     }
 
-    public Date getExpiredTime() {
-        return expiredTime;
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
+
+    public boolean isHasInternetBanking() {
+        return hasInternetBanking;
+    }
+
+    public void setHasInternetBanking(boolean hasInternetBanking) {
+        this.hasInternetBanking = hasInternetBanking;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public boolean isHasCreditCard() {
+        return hasCreditCard;
+    }
+
+    public void setHasCreditCard(boolean hasCreditCard) {
+        this.hasCreditCard = hasCreditCard;
+    }
+
+    public ArrayList<Integer> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<Integer> items) {
+        this.items = items;
+    }
+
+    public ArrayList<Integer> getItemsInBalo() {
+        return itemsInBalo;
+    }
+
+    public void setItemsInBalo(ArrayList<Integer> itemsInBalo) {
+        this.itemsInBalo = itemsInBalo;
     }
 }
