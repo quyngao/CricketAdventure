@@ -33,6 +33,12 @@
             android:theme="@style/AppTheme.NoActionBar"
             />
 
+        <activity
+            android:name=".screen.shopping.ShoppingActivity"
+            android:label="Shopping"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_menu_send"/>

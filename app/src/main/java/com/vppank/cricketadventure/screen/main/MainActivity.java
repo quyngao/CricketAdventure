@@ -1,8 +1,10 @@
 package com.vppank.cricketadventure.screen.main;
 
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,20 +14,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.vppank.cricketadventure.R;
 import com.vppank.cricketadventure.screen.common.BaseActivity;
+import com.vppank.cricketadventure.screen.history.HistoryFragment;
 import com.vppank.cricketadventure.screen.home.HomeFragment;
 import com.vppank.cricketadventure.screen.item.ItemActivity;
+import com.vppank.cricketadventure.screen.meo.MeoFragment;
+import com.vppank.cricketadventure.screen.notification.NotificationFragment;
+import com.vppank.cricketadventure.screen.shopping.ShoppingActivity;
+import com.vppank.cricketadventure.screen.social.SocialFragment;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
 
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
+
+    @BindView(R.id.bottom_navigation)
+    protected BottomNavigationView bottomNavigationView;
 
 
     @BindView(R.id.drawer_layout)
@@ -45,44 +57,48 @@ public class MainActivity extends BaseActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+        if (id == R.id.nav_home) {
+            replaceFragment(new HomeFragment(), R.id.container, "home");
+            drawer.closeDrawer(GravityCompat.START);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_logout) {
+            drawer.closeDrawer(GravityCompat.START);
+
+        } else if (id == R.id.nav_rate) {
+            drawer.closeDrawer(GravityCompat.START);
+
+        } else if (id == R.id.nav_feedback) {
+            drawer.closeDrawer(GravityCompat.START);
 
         } else if (id == R.id.nav_share) {
+            drawer.closeDrawer(GravityCompat.START);
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.action_home) {
+            Log.d("quydz", "home");
+            setTitle(item.getTitle());
+            replaceFragment(new HomeFragment(), R.id.container, "home");
+        } else if (id == R.id.action_history) {
+            Log.d("quydz", "home");
+            replaceFragment(new HistoryFragment(), R.id.container, "history");
+            setTitle(item.getTitle());
+        } else if (id == R.id.action_meo) {
+            replaceFragment(new MeoFragment(), R.id.container, "meo");
+            setTitle(item.getTitle());
+        } else if (id == R.id.action_notification) {
+            replaceFragment(new NotificationFragment(), R.id.container, "notification");
+            setTitle(item.getTitle());
+        } else if (id == R.id.action_social) {
+            replaceFragment(new SocialFragment(), R.id.container, "social");
+            setTitle(item.getTitle());
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -102,9 +118,17 @@ public class MainActivity extends BaseActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
         replaceFragment(new HomeFragment(), R.id.container, "home");
 
         View headerLayout = navigationView.getHeaderView(0);
+
+        TextView userName = headerLayout.findViewById(R.id.user_name);
+        TextView date = headerLayout.findViewById(R.id.user_date);
+
+        userName.setText("Quy dzz");
+        date.setText("21/04/2018");
+
         headerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,5 +136,10 @@ public class MainActivity extends BaseActivity
                 startActivity(ItemActivity.newIntent(MainActivity.this));
             }
         });
+    }
+
+    @OnClick(R.id.balance)
+    public void onBalanceClicked() {
+        startActivity(ShoppingActivity.newIntent(this));
     }
 }
