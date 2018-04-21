@@ -1,7 +1,8 @@
 package com.vppank.cricketadventure.screen.login;
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.facebook.AccessToken;
@@ -15,13 +16,18 @@ import com.vppank.cricketadventure.screen.common.BaseActivity;
 import com.vppank.cricketadventure.screen.main.MainActivity;
 import com.vppank.cricketadventure.service.api.ApiClient;
 import com.vppank.cricketadventure.service.api.model.UserResponse;
-import com.vppank.cricketadventure.share.UserInfo;
 
+import com.vppank.cricketadventure.storage.share.UserInfo;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends BaseActivity {
+
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        return intent;
+    }
 
 
     CallbackManager callbackManager = CallbackManager.Factory.create();
@@ -35,9 +41,13 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void initView() {
         boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
-//        if (loggedIn) {
-//            handleLogin(AccessToken.getCurrentAccessToken().getToken().toString());
-//        }
+        if (loggedIn) {
+            if (AccessToken.getCurrentAccessToken() != null) {
+                String token = AccessToken.getCurrentAccessToken().getToken();
+                if (!TextUtils.isEmpty(token))
+                    handleLogin(token);
+            }
+        }
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email", "user_friends", "public_profile");
 

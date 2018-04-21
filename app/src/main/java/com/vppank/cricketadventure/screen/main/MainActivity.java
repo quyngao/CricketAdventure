@@ -1,5 +1,7 @@
 package com.vppank.cricketadventure.screen.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +27,8 @@ import com.vppank.cricketadventure.screen.meo.MeoFragment;
 import com.vppank.cricketadventure.screen.notification.NotificationFragment;
 import com.vppank.cricketadventure.screen.shopping.ShoppingActivity;
 import com.vppank.cricketadventure.screen.social.SocialFragment;
+import com.vppank.cricketadventure.service.api.model.User;
+import com.vppank.cricketadventure.storage.share.UserInfo;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,6 +43,8 @@ public class MainActivity extends BaseActivity
     @BindView(R.id.bottom_navigation)
     protected BottomNavigationView bottomNavigationView;
 
+    @BindView(R.id.balance)
+    protected TextView balance;
 
     @BindView(R.id.drawer_layout)
     protected DrawerLayout drawer;
@@ -46,6 +52,12 @@ public class MainActivity extends BaseActivity
     @BindView(R.id.nav_view)
     protected NavigationView navigationView;
 
+    User user;
+
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
+    }
 
     @Override
     public void onBackPressed() {
@@ -113,6 +125,10 @@ public class MainActivity extends BaseActivity
         setSupportActionBar(toolbar);
         setTitle("Home");
 
+        user = UserInfo.getInstance().getUser();
+        if (user == null) finish();
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -126,8 +142,11 @@ public class MainActivity extends BaseActivity
         TextView userName = headerLayout.findViewById(R.id.user_name);
         TextView date = headerLayout.findViewById(R.id.user_date);
 
-        userName.setText("Quy dzz");
-        date.setText("21/04/2018");
+        userName.setText(user.getName());
+        date.setText(user.getEmail());
+
+        balance.setText(user.getBalance());
+
 
         headerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
