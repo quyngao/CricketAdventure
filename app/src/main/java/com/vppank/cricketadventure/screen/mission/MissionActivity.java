@@ -147,7 +147,7 @@ public class MissionActivity extends BaseActivity {
                 if (response.body().isSuccess()) {
                     Utils.newBuilderAlertDialog(MissionActivity.this)
                             .setTitle("Hoàn thành nhiệm vụ")
-                            .setMessage(String.format("Bạn đã nhận được thêm %s", getString(R.string.grass)))
+                            .setMessage(String.format("Bạn đã nhận được thêm 10%s",getString(R.string.grass)))
                             .setPositiveButton("Đóng", null)
                             .setOnDismissListener(new DialogInterface.OnDismissListener() {
                                 @Override

@@ -172,7 +172,7 @@ public class MainActivity extends BaseActivity
         viewPagerAdapter.addFragments(new HomeFragment(), "Trang chủ");
         viewPagerAdapter.addFragments(new AnnouncemetFragment(), "Lịch sử");
         viewPagerAdapter.addFragments(new MeoFragment(), "Meow");
-        viewPagerAdapter.addFragments(new NotificationFragment(), "Thông báo");
+        viewPagerAdapter.addFragments(new NewFragment(), "Thông báo");
         viewPagerAdapter.addFragments(new SocialFragment(), "Xã Hội");
         viewPager.setOffscreenPageLimit(5);
         viewPager.setAdapter(viewPagerAdapter);
