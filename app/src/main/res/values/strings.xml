@@ -23,4 +23,7 @@
     <string name="content_hasnt_banking">Đăng kí Internet Banking để nhận quà cho MeO nào</string>
     <string name="grass">🍀</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
