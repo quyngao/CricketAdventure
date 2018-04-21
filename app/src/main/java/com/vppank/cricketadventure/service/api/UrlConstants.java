@@ -16,6 +16,10 @@ public class UrlConstants {
 
     public static final String ALL_TRANSATION = "api/transactions";
 
+    public static final String NOTIFICATIONS = "api/notifications";
+
+    public static final String FRIEND_LIST ="/api/me/friends";
+
     public static final String REGISTER_SERVICE = "/api/me/services";
 
 

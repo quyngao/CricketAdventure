@@ -1,6 +1,8 @@
 package com.vppank.cricketadventure.service.api;
 
 
+import com.vppank.cricketadventure.service.api.model.FriendsResponse;
+import com.vppank.cricketadventure.service.api.model.NotificationsResponse;
 import com.vppank.cricketadventure.service.api.model.TransationResponse;
 import com.vppank.cricketadventure.service.api.model.TransationsResonse;
 import com.vppank.cricketadventure.service.api.model.UserResponse;
@@ -30,6 +32,12 @@ public interface RestInterface {
 
     @GET(UrlConstants.ALL_TRANSATION)
     Call<TransationsResonse> getAllTransation();
+
+    @GET(UrlConstants.NOTIFICATIONS)
+    Call<NotificationsResponse> getNotifications();
+
+    @GET(UrlConstants.FRIEND_LIST)
+    Call<FriendsResponse> getFriends();
 
     @POST(UrlConstants.CREATE_TRANSATION)
     @FormUrlEncoded

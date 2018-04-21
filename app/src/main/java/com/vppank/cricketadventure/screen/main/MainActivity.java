@@ -16,12 +16,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
+import com.squareup.picasso.Picasso;
 import com.vppank.cricketadventure.R;
 import com.vppank.cricketadventure.app.CricketApplication;
+import com.vppank.cricketadventure.screen.announce.AnnouncemetFragment;
 import com.vppank.cricketadventure.screen.common.BaseActivity;
 import com.vppank.cricketadventure.screen.history.HistoryFragment;
 import com.vppank.cricketadventure.screen.home.HomeFragment;
@@ -29,6 +32,7 @@ import com.vppank.cricketadventure.screen.item.ItemActivity;
 import com.vppank.cricketadventure.screen.meo.MeoFragment;
 import com.vppank.cricketadventure.screen.notification.NotificationFragment;
 import com.vppank.cricketadventure.screen.shopping.ShoppingActivity;
+import com.vppank.cricketadventure.screen.social.FriendsFragment;
 import com.vppank.cricketadventure.screen.social.SocialFragment;
 import com.vppank.cricketadventure.screen.splash.SplashActivity;
 import com.vppank.cricketadventure.service.api.model.User;
@@ -92,7 +96,6 @@ public class MainActivity extends BaseActivity
             LoginManager.getInstance().logOut();
             finish();
 
-
         } else if (id == R.id.nav_rate) {
             drawer.closeDrawer(GravityCompat.START);
 
@@ -108,10 +111,10 @@ public class MainActivity extends BaseActivity
             replaceFragment(new HomeFragment(), R.id.container, "home");
         } else if (id == R.id.action_history) {
             Log.d("quydz", "home");
-            replaceFragment(new HistoryFragment(), R.id.container, "history");
+            replaceFragment(new AnnouncemetFragment(), R.id.container, "announcement");
             setTitle(item.getTitle());
         } else if (id == R.id.action_meo) {
-            replaceFragment(new MeoFragment(), R.id.container, "meo");
+            replaceFragment(new FriendsFragment(), R.id.container, "meo");
             setTitle(item.getTitle());
         } else if (id == R.id.action_notification) {
             replaceFragment(new NotificationFragment(), R.id.container, "notification");
@@ -146,16 +149,17 @@ public class MainActivity extends BaseActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
         replaceFragment(new HomeFragment(), R.id.container, "home");
 
         View headerLayout = navigationView.getHeaderView(0);
 
         TextView userName = headerLayout.findViewById(R.id.user_name);
         TextView date = headerLayout.findViewById(R.id.user_date);
-
+        ImageView avatar = headerLayout.findViewById(R.id.imageView);
         userName.setText(user.getName());
         date.setText(user.getEmail());
-
+        Picasso.get().load(user.getAvatar()).into(avatar);
         balance.setText(getString(R.string.grass) + user.getBalance());
 
 

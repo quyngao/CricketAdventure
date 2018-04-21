@@ -53,6 +53,6 @@
         android:layout_marginLeft="4dp"
         android:layout_toStartOf="@+id/actor"
         android:text="àasfasfasf"
-        android:textColor="@color/secondary_text"
-        android:textSize="14sp"/>
+        android:textColor="@color/primary_text"
+        android:textSize="16sp"/>
 </RelativeLayout>

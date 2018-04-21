@@ -1,4 +1,4 @@
-package com.vppank.cricketadventure.screen.social;
+package com.vppank.cricketadventure.screen.announce;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -6,12 +6,10 @@ import android.support.v4.view.ViewPager;
 import com.vppank.cricketadventure.R;
 import com.vppank.cricketadventure.screen.announce.adapter.AnnouncementPagerAdapter;
 import com.vppank.cricketadventure.screen.common.BaseFragment;
-import com.vppank.cricketadventure.screen.history.HistoryFragment;
-import com.vppank.cricketadventure.screen.social.adapter.SocialPagerAdapter;
 
 import butterknife.BindView;
 
-public class SocialFragment extends BaseFragment {
+public class AnnouncemetFragment extends BaseFragment {
 
     @BindView(R.id.tabs)
     protected TabLayout mTableLayout;
@@ -19,13 +17,9 @@ public class SocialFragment extends BaseFragment {
     @BindView(R.id.viewpager)
     protected ViewPager mViewPager;
 
-    public static SocialFragment newInstance() {
-        SocialFragment fragment = new SocialFragment();
-        return fragment;
-    }
     @Override
     protected int getLayout() {
-        return R.layout.fragment_social;
+        return R.layout.fragment_annoucement;
     }
 
     @Override
@@ -33,15 +27,15 @@ public class SocialFragment extends BaseFragment {
         setupViewPager();
     }
 
-    @Override
-    protected void loadData() {
-
-    }
-
     private void setupViewPager() {
-        SocialPagerAdapter adapter = new SocialPagerAdapter(getActivity().getSupportFragmentManager());
+        AnnouncementPagerAdapter adapter = new AnnouncementPagerAdapter(getActivity().getSupportFragmentManager());
         adapter.addFragments();
         mViewPager.setAdapter(adapter);
         mTableLayout.setupWithViewPager(mViewPager);
+    }
+
+    @Override
+    protected void loadData() {
+
     }
 }

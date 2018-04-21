@@ -24,14 +24,28 @@ public class User implements Serializable {
     @SerializedName("email")
     private String email;
 
+    @SerializedName("avatar")
+    private String avatar;
+
     @SerializedName("balance")
     private String balance;
+
+    @SerializedName("totalWeed")
+    private int totalWeed;
+
+
+    @SerializedName("totalTravel")
+    private int totalTravel;
 
     @SerializedName("hasInternetBanking")
     private boolean hasInternetBanking;
 
     @SerializedName("hasCreditCard")
     private boolean hasCreditCard;
+
+    public String getAvatar() {
+        return avatar;
+    }
 
     @SerializedName("items")
     private ArrayList<Integer> items = new ArrayList<>();
@@ -77,6 +91,14 @@ public class User implements Serializable {
 
     public void setHasInternetBanking(boolean hasInternetBanking) {
         this.hasInternetBanking = hasInternetBanking;
+    }
+
+    public int getTotalWeed() {
+        return totalWeed;
+    }
+
+    public int getTotalTravel() {
+        return totalTravel;
     }
 
     public String getBirthday() {
