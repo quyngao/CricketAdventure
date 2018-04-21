@@ -1,9 +1,11 @@
 package com.vppank.cricketadventure.screen.splash;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.vppank.cricketadventure.R;
@@ -41,6 +43,9 @@ public class SplashActivity extends BaseActivity {
         super.loadData();
         String authen = CricketApplication.getPrefManager().getAuth();
         User user = CricketApplication.getPrefManager().getUser();
+
+        Log.d("splash quydz", authen);
+
         if (TextUtils.isEmpty(authen)) {
             nextScreen(LoginActivity.class);
         } else {
@@ -50,14 +55,14 @@ public class SplashActivity extends BaseActivity {
         }
     }
 
-    public void nextScreen(Class activity) {
+    public void nextScreen(final Class c) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(LoginActivity.newIntent(SplashActivity.this));
+                Intent intent = new Intent(SplashActivity.this, c);
+                startActivity(intent);
                 finish();
             }
         }, 1000);
-
     }
 }

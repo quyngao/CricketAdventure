@@ -8,7 +8,7 @@ public class UrlConstants {
     public static final String CHECK_IMEI_DEVICE = "/users/check";
 
 
-    public static final String CHECK_TIMESTAMP = "/timestamp";
+    public static final String LOGIN_FB = "/api/login";
 
     public static final String GET_KQXS_MB = "/kq/{date}";
 

@@ -2,6 +2,8 @@ package com.vppank.cricketadventure.service.api;
 
 import android.util.Log;
 
+import com.vppank.cricketadventure.app.CricketApplication;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -30,8 +32,12 @@ public class ApiClient {
                     .addInterceptor(new Interceptor() {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
-                            Request request = chain.request();
-
+                            Request original = chain.request();
+                            Request.Builder builder = original.newBuilder();
+                            builder.header("x-access-token", CricketApplication.getPrefManager().getAuth());
+                            Request request = builder
+                                    .method(original.method(), original.body())
+                                    .build();
                             Response response = chain.proceed(request);
 
                             int tryCount = 0;
@@ -60,7 +66,6 @@ public class ApiClient {
         }
         return mRestIntances;
     }
-
 
 
 }

@@ -135,6 +135,8 @@ public class MainActivity extends BaseActivity
         setTitle("Home");
 
         user = CricketApplication.getPrefManager().getUser();
+
+        Log.d("quydz", CricketApplication.getPrefManager().getAuth());
         if (user == null) finish();
 
 

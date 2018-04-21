@@ -79,13 +79,13 @@ public class LoginActivity extends BaseActivity {
                         if (response.body().isSuccess()) {
                             CricketApplication.getPrefManager().saveAuth(response.body().getToken());
                             CricketApplication.getPrefManager().saveUser(response.body().getUser());
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
+                            startActivity(MainActivity.newIntent(LoginActivity.this));
                             LoginActivity.this.finish();
                         } else {
                             showMessageError(response.body().getMessage());
                         }
                     }
+
                     @Override
                     public void onFailure(Call<UserResponse> call, Throwable t) {
                         showMessageError("Đăng nhập thất bại");

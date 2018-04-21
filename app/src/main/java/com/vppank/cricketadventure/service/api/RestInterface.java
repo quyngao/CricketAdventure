@@ -19,7 +19,7 @@ public interface RestInterface {
     @GET(UrlConstants.CHECK_IMEI_DEVICE)
     Call<UserResponse> checkImei(@Query("imei") String iMei);
 
-    @POST("/api/login")
+    @POST(UrlConstants.LOGIN_FB)
     @FormUrlEncoded
     Call<UserResponse> loginFacebook(@Field("facebookToken") String token);
 
