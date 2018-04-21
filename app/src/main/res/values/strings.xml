@@ -10,9 +10,10 @@
     <string name="default_notification_channel_id">new</string>
     <string name="default_notification_channel_name">News</string>
     <string name="text_home">Trang chủ</string>
-    <string name="text_history">Thông báo</string>
-    <string name="text_meo">MeO</string>
-    <string name="text_noti">Nhiệm vụ</string>
+
+    <string name="text_history">Lịch sử</string>
+    <string name="text_meo">Meow</string>
+    <string name="text_noti">Thông báo</string>
     <string name="text_social">Xã hội</string>
 
     <string name="facebook_app_id">201828170596445</string>

@@ -28,7 +28,7 @@ public class User implements Serializable {
     private String avatar;
 
     @SerializedName("balance")
-    private String balance;
+    private int balance;
 
     @SerializedName("totalWeed")
     private int totalWeed;
@@ -46,6 +46,8 @@ public class User implements Serializable {
     public String getAvatar() {
         return avatar;
     }
+    @SerializedName("atHome")
+    private boolean atHome = true;
 
     @SerializedName("items")
     private ArrayList<Integer> items = new ArrayList<>();
@@ -77,11 +79,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 
@@ -131,5 +133,13 @@ public class User implements Serializable {
 
     public void setItemsInBalo(ArrayList<Integer> itemsInBalo) {
         this.itemsInBalo = itemsInBalo;
+    }
+
+    public boolean isAtHome() {
+        return atHome;
+    }
+
+    public void setAtHome(boolean atHome) {
+        this.atHome = atHome;
     }
 }

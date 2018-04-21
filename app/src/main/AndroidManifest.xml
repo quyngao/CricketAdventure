@@ -87,6 +87,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <provider android:authorities="com.facebook.app.FacebookContentProvider201828170596445"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true" />
 
         <activity
             android:name=".screen.splash.SplashActivity"

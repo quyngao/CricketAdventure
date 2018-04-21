@@ -22,6 +22,12 @@ import android.widget.TextView;
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.squareup.picasso.Picasso;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.vppank.cricketadventure.R;
 import com.vppank.cricketadventure.app.CricketApplication;
 import com.vppank.cricketadventure.screen.announce.AnnouncemetFragment;
@@ -35,21 +41,29 @@ import com.vppank.cricketadventure.screen.shopping.ShoppingActivity;
 import com.vppank.cricketadventure.screen.social.FriendsFragment;
 import com.vppank.cricketadventure.screen.social.SocialFragment;
 import com.vppank.cricketadventure.screen.splash.SplashActivity;
+import com.vppank.cricketadventure.service.api.ApiClient;
+import com.vppank.cricketadventure.service.api.model.GetUserResponse;
 import com.vppank.cricketadventure.service.api.model.User;
 import com.vppank.cricketadventure.storage.share.UserInfo;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef;
+
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
 
     @BindView(R.id.bottom_navigation)
-    protected BottomNavigationView bottomNavigationView;
+    protected BottomNavigationViewEx bottomNavigationView;
 
     @BindView(R.id.balance)
     protected TextView balance;
@@ -148,6 +162,9 @@ public class MainActivity extends BaseActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        bottomNavigationView.enableAnimation(false);
+        bottomNavigationView.enableItemShiftingMode(false);
+        bottomNavigationView.enableShiftingMode(false);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         replaceFragment(new HomeFragment(), R.id.container, "home");
@@ -160,6 +177,23 @@ public class MainActivity extends BaseActivity
         userName.setText(user.getName());
         date.setText(user.getEmail());
         Picasso.get().load(user.getAvatar()).into(avatar);
+        myRef = database.getReference("balances/"+UserInfo.getInstance().getUser().getId());
+
+        myRef.child("balance").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.e("value change", dataSnapshot.toString());
+                UserInfo.getInstance().getUser().setBalance(Integer.parseInt(dataSnapshot.getValue().toString()));
+                balance.setText(getString(R.string.grass) + UserInfo.getInstance().getUser().getBalance());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         balance.setText(getString(R.string.grass) + user.getBalance());
 
 
@@ -175,5 +209,15 @@ public class MainActivity extends BaseActivity
     @OnClick(R.id.balance)
     public void onBalanceClicked() {
         startActivity(ShoppingActivity.newIntent(this));
+    }
+
+    @Override
+    protected void loadData() {
+        super.loadData();
+        getMeoInfo();
+    }
+
+    public void getMeoInfo() {
+
     }
 }
