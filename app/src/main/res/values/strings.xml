@@ -14,4 +14,8 @@
     <string name="text_meo">MEO</string>
     <string name="text_noti">Notification</string>
     <string name="text_social">Social</string>
+
+    <string name="facebook_app_id">201828170596445</string>
+    <string name="fb_login_protocol_scheme">fb201828170596445</string>
+
 </resources>

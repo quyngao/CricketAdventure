@@ -17,63 +17,63 @@ public class User implements Serializable {
     @SerializedName("name")
     private String name;
 
-    @SerializedName("phone")
-    private String phone;
+    @SerializedName("email")
+    private String email;
 
-    @SerializedName("imei")
-    private String imei;
+    @SerializedName("balance")
+    private String balance;
 
-    @SerializedName("date")
-    private String date;
+    @SerializedName("hasInternetBanking")
+    private boolean hasInternetBanking;
 
-    @SerializedName("createdAt")
-    private String createdAt;
-
-    private Date expiredTime;
-
+    @SerializedName("hasCreditCard")
+    private boolean hasCreditCard;
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getImei() {
-        return imei;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public String getEmail() {
+        return email;
     }
 
-    public void setImei(String imei) {
-        this.imei = imei;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public String getBalance() {
+        return balance;
     }
 
-    public Date getExpiredTime() {
-        return expiredTime;
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
+
+    public boolean isHasInternetBanking() {
+        return hasInternetBanking;
+    }
+
+    public void setHasInternetBanking(boolean hasInternetBanking) {
+        this.hasInternetBanking = hasInternetBanking;
+    }
+
+    public boolean isHasCreditCard() {
+        return hasCreditCard;
+    }
+
+    public void setHasCreditCard(boolean hasCreditCard) {
+        this.hasCreditCard = hasCreditCard;
     }
 }
