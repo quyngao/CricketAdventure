@@ -16,6 +16,9 @@
     <string name="text_noti">Khám phá</string>
     <string name="text_social">Bạn bè</string>
 
+    <string name="channel_name">vpmeo</string>
+    <string name="channel_description">notification of vpmeo app</string>
+
     <string name="facebook_app_id">201828170596445</string>
     <string name="fb_login_protocol_scheme">fb201828170596445</string>
     <string name="content_has_credit">Cập nhật mũ cho mèo nè</string>

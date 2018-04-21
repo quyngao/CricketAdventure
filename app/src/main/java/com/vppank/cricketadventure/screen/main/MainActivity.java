@@ -3,6 +3,12 @@ package com.vppank.cricketadventure.screen.main;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -24,12 +30,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.vppank.cricketadventure.R;
 import com.vppank.cricketadventure.app.CricketApplication;
+import com.vppank.cricketadventure.customview.NonSwipeableViewPager;
 import com.vppank.cricketadventure.screen.announce.AnnouncemetFragment;
 import com.vppank.cricketadventure.screen.common.BaseActivity;
 import com.vppank.cricketadventure.screen.home.HomeFragment;
 import com.vppank.cricketadventure.screen.item.ItemActivity;
 import com.vppank.cricketadventure.screen.meo.MeoFragment;
 import com.vppank.cricketadventure.screen.mission.NewFragment;
+import com.vppank.cricketadventure.screen.notification.NotificationFragment;
 import com.vppank.cricketadventure.screen.shopping.ShoppingActivity;
 import com.vppank.cricketadventure.screen.social.SocialFragment;
 import com.vppank.cricketadventure.screen.splash.SplashActivity;
@@ -60,6 +68,9 @@ public class MainActivity extends BaseActivity
 
     @BindView(R.id.nav_view)
     protected NavigationView navigationView;
+
+    @BindView(R.id.container)
+    protected NonSwipeableViewPager viewPager;
 
     User user;
 
@@ -105,24 +116,6 @@ public class MainActivity extends BaseActivity
 
         } else if (id == R.id.nav_share) {
             drawer.closeDrawer(GravityCompat.START);
-
-        } else if (id == R.id.action_home) {
-            Log.d("quydz", "home");
-            setTitle(item.getTitle());
-            replaceFragment(new HomeFragment(), R.id.container, "home");
-        } else if (id == R.id.action_history) {
-            Log.d("quydz", "home");
-            replaceFragment(new AnnouncemetFragment(), R.id.container, "announcement");
-            setTitle(item.getTitle());
-        } else if (id == R.id.action_meo) {
-            replaceFragment(new MeoFragment(), R.id.container, "meo");
-            setTitle(item.getTitle());
-        } else if (id == R.id.action_notification) {
-            replaceFragment(new NewFragment(), R.id.container, "notification");
-            setTitle(item.getTitle());
-        } else if (id == R.id.action_social) {
-            replaceFragment(new SocialFragment(), R.id.container, "social");
-            setTitle(item.getTitle());
         }
         return true;
     }
@@ -149,12 +142,56 @@ public class MainActivity extends BaseActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
         bottomNavigationView.enableAnimation(false);
         bottomNavigationView.enableItemShiftingMode(false);
         bottomNavigationView.enableShiftingMode(false);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        replaceFragment(new HomeFragment(), R.id.container, "home");
+        MainViewPagerAdapter viewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFragments(new HomeFragment(), "Trang chủ");
+        viewPagerAdapter.addFragments(new AnnouncemetFragment(), "Lịch sử");
+        viewPagerAdapter.addFragments(new MeoFragment(), "Meow");
+        viewPagerAdapter.addFragments(new NotificationFragment(), "Thông báo");
+        viewPagerAdapter.addFragments(new SocialFragment(), "Xã Hội");
+        viewPager.setOffscreenPageLimit(5);
+        viewPager.setAdapter(viewPagerAdapter);
+
+        bottomNavigationView.setupWithViewPager(viewPager);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int id = item.getItemId();
+                switch (id){
+                    case R.id.action_home:
+                        viewPager.setCurrentItem(0);
+                        setTitle("Trang chủ");
+                        break;
+                    case R.id.action_history:
+                        viewPager.setCurrentItem(1);
+                        setTitle("Lịch sử");
+                        break;
+                    case R.id.action_meo:
+                        viewPager.setCurrentItem(2);
+                        setTitle("Meow");
+                        break;
+                    case R.id.action_notification:
+                        viewPager.setCurrentItem(3);
+                        setTitle("Thông báo");
+                        break;
+                    case R.id.action_social:
+                        viewPager.setCurrentItem(4);
+                        setTitle("Xã hội");
+                        break;
+                }
+                return true;
+            }
+        });
+
 
         View headerLayout = navigationView.getHeaderView(0);
 
@@ -184,13 +221,10 @@ public class MainActivity extends BaseActivity
         balance.setText(getString(R.string.grass) + user.getBalance());
 
 
-        headerLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer.closeDrawer(GravityCompat.START);
-                startActivity(ItemActivity.newIntent(MainActivity.this));
-            }
-        });
+    }
+
+    private void setTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 
     @OnClick(R.id.balance)

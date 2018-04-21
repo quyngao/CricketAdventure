@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#009688</color>
-    <color name="colorPrimaryDark">#009688</color>
+    <color name="colorPrimaryDark">#00675b</color>
     <color name="colorPrimaryLight">#B2DFDB</color>
     <color name="colorAccent">#009688</color>
     <color name="primary_text">#212121</color>
@@ -10,7 +10,6 @@
     <color name="divider">#BDBDBD</color>
     <color name="background_hasnt_service">#E6E6E6</color>
     <color name="background_has_service">#FFFFFF</color>
-
 
     <!-- Screens background color-->
     <color name="bg_screen1">#f64c73</color>
@@ -43,5 +42,4 @@
         <item>@color/dot_dark_screen3</item>
         <item>@color/dot_dark_screen4</item>
     </array>
-
 </resources>

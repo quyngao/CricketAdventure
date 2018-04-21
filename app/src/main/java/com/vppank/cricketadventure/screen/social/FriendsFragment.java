@@ -92,9 +92,11 @@ public class FriendsFragment extends BaseFragment {
                 if (response.body().isSuccess()) {
                     Log.d("quydz", "" + friends.size());
                     friends = response.body().getFriends();
+                    Log.e("Size of friend", friends.size() + "");
                     sortFriends();
                     Log.d("quydz", "" + friends.size());
                     mAdapter.setFriends(friends);
+                    mAdapter.notifyDataSetChanged();
                 } else {
                     showMessageError(response.body().getMessage());
                 }
