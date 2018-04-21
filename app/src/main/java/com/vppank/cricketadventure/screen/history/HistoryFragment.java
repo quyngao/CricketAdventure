@@ -40,8 +40,6 @@ public class HistoryFragment extends BaseFragment {
     }
 
 
-
-
     @Override
     protected int getLayout() {
         return R.layout.fragment_history;
@@ -72,13 +70,13 @@ public class HistoryFragment extends BaseFragment {
 
     @Override
     protected void loadData() {
-
+        refeshData();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        refeshData();
+
     }
 
     private void refeshData() {

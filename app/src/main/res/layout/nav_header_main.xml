@@ -16,7 +16,6 @@
         android:id="@+id/imageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@color/primary_text"
         android:contentDescription="@string/nav_header_desc"
         android:elevation="6dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"/>

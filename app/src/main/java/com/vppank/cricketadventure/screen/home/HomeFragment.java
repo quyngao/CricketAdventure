@@ -22,6 +22,8 @@ import com.vppank.cricketadventure.service.api.model.User;
 import com.vppank.cricketadventure.service.api.model.UserResponse;
 import com.vppank.cricketadventure.storage.share.UserInfo;
 
+import java.text.NumberFormat;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -108,6 +110,12 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.card_view_utility)
     protected View viewUtility;
 
+    @BindView(R.id.mu)
+    protected View imgMu;
+
+    @BindView(R.id.kinh)
+    protected View imgKinh;
+
     User user;
     TranQuantity tranQuantity;
 
@@ -154,6 +162,7 @@ public class HomeFragment extends BaseFragment {
         if (user.isHasCreditCard() && user.isHasInternetBanking()) {
             addService.setVisibility(View.GONE);
         }
+
 
 //        viewDebit.setBackgroundResource(tranQuantity.getType0() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
 //        viewCredit.setBackgroundResource(tranQuantity.getType1() != 0 ? R.color.background_has_service : R.color.background_hasnt_service);
@@ -207,6 +216,8 @@ public class HomeFragment extends BaseFragment {
 
     public void addTransation(final String message, final int type) {
 
+
+
         showLoadingDialog();
 
         ApiClient.getRestInstance().creatTransation(type).enqueue(new Callback<TransationResponse>() {
@@ -216,7 +227,7 @@ public class HomeFragment extends BaseFragment {
                 if (response.body().isSuccess()) {
                     Utils.newBuilderAlertDialog(getContext())
                             .setTitle("Giao dịch thành công")
-                            .setMessage(String.format(message + " %d", response.body().getTransation().getBalance()))
+                            .setMessage(String.format(message + " %s", response.body().getTransation().getBalance()))
                             .setPositiveButton("Đóng", null)
                             .setOnDismissListener(new DialogInterface.OnDismissListener() {
                                 @Override
@@ -276,12 +287,22 @@ public class HomeFragment extends BaseFragment {
 
     }
 
+    boolean deoMu = false;
+    boolean deoKinh = false;
+
     @OnClick(R.id.card_view_has_credit)
     public void onHasCreditClicked() {
         if (!user.isHasCreditCard()) {
             registryService("Thẻ Credit Card đã được tạo", user.isHasInternetBanking(), true);
         } else {
 
+            if (deoKinh) {
+                imgKinh.setVisibility(View.INVISIBLE);
+                deoKinh = false;
+            } else {
+                imgKinh.setVisibility(View.VISIBLE);
+                deoKinh = true;
+            }
         }
     }
 
@@ -290,6 +311,13 @@ public class HomeFragment extends BaseFragment {
         if (!user.isHasInternetBanking()) {
             registryService("Tài khoản internet banking đã được tạo", true, user.isHasCreditCard());
         } else {
+            if (deoMu) {
+                imgMu.setVisibility(View.INVISIBLE);
+                deoMu = false;
+            } else {
+                imgMu.setVisibility(View.VISIBLE);
+                deoMu = true;
+            }
 
         }
     }

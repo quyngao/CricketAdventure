@@ -42,7 +42,7 @@ public abstract class BaseFragment extends Fragment {
         View root = inflater.inflate(getLayout(), container, false);
         ButterKnife.bind(this, root);
         initView();
-        loadData();
+
         return root;
     }
 
@@ -56,6 +56,12 @@ public abstract class BaseFragment extends Fragment {
                 .make(mRootView, message, Snackbar.LENGTH_LONG);
 
         snackbar.show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
     }
 
     protected void showLoadingDialog() {

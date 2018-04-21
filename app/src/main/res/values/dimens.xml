@@ -9,4 +9,6 @@
     <dimen name="spacing_dp8">8dp</dimen>
     <dimen name="spacing_dp16">16dp</dimen>
     <dimen name="spacing_dp2">2dp</dimen>
+    <dimen name="dots_height">32dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
 </resources>

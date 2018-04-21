@@ -2,6 +2,7 @@ package com.vppank.cricketadventure.service.api;
 
 
 import com.vppank.cricketadventure.service.api.model.FriendsResponse;
+import com.vppank.cricketadventure.service.api.model.NewsResponse;
 import com.vppank.cricketadventure.service.api.model.NotificationsResponse;
 import com.vppank.cricketadventure.service.api.model.BaseResonse;
 import com.vppank.cricketadventure.service.api.model.GetMailResponse;
@@ -30,6 +31,11 @@ public interface RestInterface {
     @FormUrlEncoded
     Call<UserResponse> loginFacebook(@Field("facebookToken") String token);
 
+    @POST(UrlConstants.READ_NEW)
+    @FormUrlEncoded
+    Call<UserResponse> readNew(@Field("newsId") String newsId);
+
+
     @GET(UrlConstants.PROFILE_USER)
     Call<UserResponse> getProfile();
 
@@ -41,6 +47,9 @@ public interface RestInterface {
 
     @GET(UrlConstants.FRIEND_LIST)
     Call<FriendsResponse> getFriends();
+
+    @GET(UrlConstants.NEWS)
+    Call<NewsResponse> getNews();
 
     @POST(UrlConstants.CREATE_TRANSATION)
     @FormUrlEncoded

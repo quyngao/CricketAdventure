@@ -73,7 +73,7 @@ public class NotificationFragment extends BaseFragment {
 
     @Override
     protected void loadData() {
-        refeshData();
+
     }
 
     private void refeshData() {
@@ -96,7 +96,11 @@ public class NotificationFragment extends BaseFragment {
                 showMessageError("Lỗi kết nối server");
             }
         });
-
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        refeshData();
+    }
 }

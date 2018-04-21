@@ -3,7 +3,9 @@ package com.vppank.cricketadventure.app;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 
+import com.vppank.cricketadventure.service.backgroundservices.MessingService;
 import com.vppank.cricketadventure.storage.PrefManager;
 
 public class CricketApplication extends Application {
@@ -18,6 +20,7 @@ public class CricketApplication extends Application {
     public void onCreate() {
         super.onCreate();
         CricketApplication.context = this;
+        this.startService(new Intent(this, MessingService.class));
     }
 
     public static PrefManager getPrefManager() {

@@ -39,7 +39,7 @@ public class SocialFragment extends BaseFragment {
     }
 
     private void setupViewPager() {
-        SocialPagerAdapter adapter = new SocialPagerAdapter(getActivity().getSupportFragmentManager());
+        SocialPagerAdapter adapter = new SocialPagerAdapter(this.getChildFragmentManager());
         adapter.addFragments();
         mViewPager.setAdapter(adapter);
         mTableLayout.setupWithViewPager(mViewPager);

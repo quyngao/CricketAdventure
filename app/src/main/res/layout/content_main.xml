@@ -19,11 +19,11 @@
         app:itemTextColor="@drawable/nav_item_color_state"
         app:menu="@menu/bottom_navigation_main" />
 
-    <FrameLayout
+    <com.vppank.cricketadventure.customview.NonSwipeableViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_navigation">
-    </FrameLayout>
+    </com.vppank.cricketadventure.customview.NonSwipeableViewPager>
 
 </RelativeLayout>

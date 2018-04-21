@@ -20,6 +20,11 @@ public class UrlConstants {
 
     public static final String FRIEND_LIST ="/api/me/friends";
 
+    public static final String NEWS="/api/news";
+
+    public static final String READ_NEW = "/api/news/read";
+
+
     public static final String REGISTER_SERVICE = "/api/me/services";
 
     public static final String START_TRIP = "/api/trip/start";

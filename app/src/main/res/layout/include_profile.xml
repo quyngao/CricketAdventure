@@ -6,16 +6,37 @@
     android:layout_marginBottom="4dp"
     android:foreground="?selectableItemBackground"
     android:padding="8dp">
-
-    <ImageView
-        android:id="@+id/actor"
-        android:layout_width="80dp"
-        android:layout_height="120dp"
-        android:layout_alignParentRight="true"
+    <RelativeLayout
         android:layout_gravity="center"
         android:layout_marginBottom="4dp"
         android:layout_marginLeft="8dp"
-        android:src="@drawable/meo_chinh_dien"/>
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/actor"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/meo_chinh_dien"/>
+
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/mu"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/item_kinh"/>
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/kinh"
+            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/item_mu"/>
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/name"
