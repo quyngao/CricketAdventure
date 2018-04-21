@@ -9,71 +9,34 @@
     android:elevation="8dp"
     >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:tool="http://schemas.android.com/tools"
-                  android:id="@+id/container"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:foreground="?selectableItemBackground"
-                  android:orientation="vertical"
-                  android:padding="12dp">
-        >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+        <ImageView
+            android:id="@+id/content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="8dp"
+            android:scaleType="centerCrop"
+            tool:background="@color/colorPrimaryDark"/>
 
         <TextView
-            android:id="@+id/user_name"
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/primary_text"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tool:text="Quys sdd"
-            />
-
-        <TextView
-            android:id="@+id/user_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/primary_text"
-            android:textSize="16sp"
-            tool:text="Quys sdd"
-            />
-
-        <TextView
-            android:id="@+id/user_imei"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tool:text="Quys sdd"
-            />
-
-        <TextView
-            android:id="@+id/user_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tool:text="Quys sdd"
-            />
-
-        <TextView
-            android:id="@+id/created"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_alignBottom="@+id/content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/content"
             android:ellipsize="end"
-            android:maxLines="3"
+            android:maxLines="4"
             android:textColor="@color/secondary_text"
             android:textSize="14sp"
-            tool:text="Quy"
-            />
-    </LinearLayout>
-
+            tool:text=""/>
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>
