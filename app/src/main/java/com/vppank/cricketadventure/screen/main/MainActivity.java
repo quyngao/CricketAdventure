@@ -18,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 import com.vppank.cricketadventure.R;
 import com.vppank.cricketadventure.app.CricketApplication;
 import com.vppank.cricketadventure.screen.common.BaseActivity;
@@ -87,6 +89,7 @@ public class MainActivity extends BaseActivity
             drawer.closeDrawer(GravityCompat.START);
             CricketApplication.getPrefManager().clearPreferences();
             startActivity(SplashActivity.newIntent(this));
+            LoginManager.getInstance().logOut();
             finish();
 
 
