@@ -16,8 +16,8 @@ import com.vppank.cricketadventure.screen.common.BaseActivity;
 import com.vppank.cricketadventure.screen.main.MainActivity;
 import com.vppank.cricketadventure.service.api.ApiClient;
 import com.vppank.cricketadventure.service.api.model.UserResponse;
-import com.vppank.cricketadventure.storage.share.UserInfo;
 
+import com.vppank.cricketadventure.storage.share.UserInfo;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,14 +70,14 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    private void handleLogin(String facebookToken) {
+    private void handleLogin(String facebookToken){
         showLoadingDialog();
         ApiClient.getRestInstance().loginFacebook(facebookToken)
                 .enqueue(new Callback<UserResponse>() {
                     @Override
                     public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                         dissmissLoadingDialog();
-                        if (response.body().isSuccess()) {
+                        if (response.body().isSuccess()){
                             UserInfo.getInstance().setAccessToken(response.body().getToken());
                             UserInfo.getInstance().setUser(response.body().getUser());
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
