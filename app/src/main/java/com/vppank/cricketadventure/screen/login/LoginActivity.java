@@ -35,9 +35,9 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void initView() {
         boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
-        if (loggedIn) {
-            handleLogin(AccessToken.getCurrentAccessToken().getToken().toString());
-        }
+//        if (loggedIn) {
+//            handleLogin(AccessToken.getCurrentAccessToken().getToken().toString());
+//        }
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email", "user_friends", "public_profile");
 
