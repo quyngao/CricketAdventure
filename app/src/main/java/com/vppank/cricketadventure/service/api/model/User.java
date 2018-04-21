@@ -3,6 +3,7 @@ package com.vppank.cricketadventure.service.api.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -32,6 +33,11 @@ public class User implements Serializable {
     @SerializedName("hasCreditCard")
     private boolean hasCreditCard;
 
+    @SerializedName("items")
+    private ArrayList<Integer> items = new ArrayList<>();
+
+    @SerializedName("balo")
+    private ArrayList<Integer> itemsInBalo = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -87,5 +93,21 @@ public class User implements Serializable {
 
     public void setHasCreditCard(boolean hasCreditCard) {
         this.hasCreditCard = hasCreditCard;
+    }
+
+    public ArrayList<Integer> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<Integer> items) {
+        this.items = items;
+    }
+
+    public ArrayList<Integer> getItemsInBalo() {
+        return itemsInBalo;
+    }
+
+    public void setItemsInBalo(ArrayList<Integer> itemsInBalo) {
+        this.itemsInBalo = itemsInBalo;
     }
 }
