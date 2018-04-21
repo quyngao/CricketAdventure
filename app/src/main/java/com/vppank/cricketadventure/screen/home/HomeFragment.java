@@ -20,6 +20,7 @@ import com.vppank.cricketadventure.service.api.model.TranQuantity;
 import com.vppank.cricketadventure.service.api.model.TransationResponse;
 import com.vppank.cricketadventure.service.api.model.User;
 import com.vppank.cricketadventure.service.api.model.UserResponse;
+import com.vppank.cricketadventure.storage.share.UserInfo;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -256,6 +257,8 @@ public class HomeFragment extends BaseFragment {
                         if (response.body().isSuccess()) {
                             CricketApplication.getPrefManager().saveUser(response.body().getUser());
                             CricketApplication.getPrefManager().saveTranQuanlity(response.body().getTranQuantity());
+                            UserInfo.getInstance().setUser(response.body().getUser());
+                            UserInfo.getInstance().setAccessToken(response.body().getToken());
                             user = response.body().getUser();
                             tranQuantity = response.body().getTranQuantity();
                             loadData();
