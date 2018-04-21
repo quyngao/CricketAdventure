@@ -37,33 +37,36 @@ public class MessingService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         listenMessage();
-
         return START_STICKY;
     }
 
     private void listenMessage() {
-        Log.e("listenMessage", UserInfo.getInstance().getUser().getId());
-        FirebaseDatabase.getInstance()
-                .getReference("users/" +  UserInfo.getInstance().getUser().getId() + "/notification")
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        Log.e("Noti", dataSnapshot.toString());
-                        VPMeoNotifcation notification = dataSnapshot.getValue(VPMeoNotifcation.class);
-                        if (notification != null){
-                            sendEventNotification(notification, MessingService.this);
-                            FirebaseDatabase.getInstance()
-                                    .getReference("users" +  UserInfo.getInstance().getUser().getId() + "/notification")
-                                    .setValue(null);
+        try{
+            FirebaseDatabase.getInstance()
+                    .getReference("users/" +  UserInfo.getInstance().getUser().getId() + "/notification")
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Log.e("Noti", dataSnapshot.toString());
+                            VPMeoNotifcation notification = dataSnapshot.getValue(VPMeoNotifcation.class);
+                            if (notification != null){
+                                sendEventNotification(notification, MessingService.this);
+                                FirebaseDatabase.getInstance()
+                                        .getReference("users" +  UserInfo.getInstance().getUser().getId() + "/notification")
+                                        .setValue(null);
+                            }
+
                         }
 
-                    }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                        }
+                    });
+        } catch (Exception e){
 
-                    }
-                });
+        }
+
     }
 
     public static void sendEventNotification(VPMeoNotifcation notification, Context context) {

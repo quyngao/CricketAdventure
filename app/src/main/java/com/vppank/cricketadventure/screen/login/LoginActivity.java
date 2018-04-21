@@ -19,6 +19,7 @@ import com.vppank.cricketadventure.service.api.ApiClient;
 import com.vppank.cricketadventure.service.api.model.User;
 import com.vppank.cricketadventure.service.api.model.UserResponse;
 
+import com.vppank.cricketadventure.service.backgroundservices.MessingService;
 import com.vppank.cricketadventure.storage.share.UserInfo;
 
 import retrofit2.Call;
@@ -84,6 +85,7 @@ public class LoginActivity extends BaseActivity {
 
                             UserInfo.getInstance().setUser(response.body().getUser());
                             UserInfo.getInstance().setAccessToken(response.body().getToken());
+                            startService(new Intent(LoginActivity.this, MessingService.class));
                             
                             startActivity(MainActivity.newIntent(LoginActivity.this));
                             LoginActivity.this.finish();
