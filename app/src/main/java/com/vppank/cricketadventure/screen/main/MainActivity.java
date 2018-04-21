@@ -117,6 +117,24 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_share) {
             drawer.closeDrawer(GravityCompat.START);
         }
+        //else if (id == R.id.action_home) {
+//            Log.d("quydz", "home");
+//            setTitle(item.getTitle());
+//            replaceFragment(new HomeFragment(), R.id.container, "home");
+//        } else if (id == R.id.action_history) {
+//            Log.d("quydz", "home");
+//            replaceFragment(new AnnouncemetFragment(), R.id.container, "announcement");
+//            setTitle(item.getTitle());
+//        } else if (id == R.id.action_meo) {
+//            replaceFragment(new MeoFragment(), R.id.container, "meo");
+//            setTitle(item.getTitle());
+//        } else if (id == R.id.action_notification) {
+//            replaceFragment(new NotificationFragment(), R.id.container, "notification");
+//            setTitle(item.getTitle());
+//        } else if (id == R.id.action_social) {
+//            replaceFragment(new SocialFragment(), R.id.container, "social");
+//            setTitle(item.getTitle());
+//        }
         return true;
     }
 
