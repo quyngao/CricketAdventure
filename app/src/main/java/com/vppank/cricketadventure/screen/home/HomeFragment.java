@@ -22,6 +22,8 @@ import com.vppank.cricketadventure.service.api.model.User;
 import com.vppank.cricketadventure.service.api.model.UserResponse;
 import com.vppank.cricketadventure.storage.share.UserInfo;
 
+import java.text.NumberFormat;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -207,6 +209,8 @@ public class HomeFragment extends BaseFragment {
 
     public void addTransation(final String message, final int type) {
 
+
+
         showLoadingDialog();
 
         ApiClient.getRestInstance().creatTransation(type).enqueue(new Callback<TransationResponse>() {
@@ -216,7 +220,7 @@ public class HomeFragment extends BaseFragment {
                 if (response.body().isSuccess()) {
                     Utils.newBuilderAlertDialog(getContext())
                             .setTitle("Giao dịch thành công")
-                            .setMessage(String.format(message + " %d", response.body().getTransation().getBalance()))
+                            .setMessage(String.format(message + " %s", response.body().getTransation().getBalance()))
                             .setPositiveButton("Đóng", null)
                             .setOnDismissListener(new DialogInterface.OnDismissListener() {
                                 @Override

@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.vppank.cricketadventure.R;
 import com.vppank.cricketadventure.screen.common.BaseFragment;
@@ -89,8 +90,10 @@ public class FriendsFragment extends BaseFragment {
             public void onResponse(Call<FriendsResponse> call, Response<FriendsResponse> response) {
                 mSwipeRefreshLayout.setRefreshing(false);
                 if (response.body().isSuccess()) {
+                    Log.d("quydz", "" + friends.size());
                     friends = response.body().getFriends();
                     sortFriends();
+                    Log.d("quydz", "" + friends.size());
                     mAdapter.setFriends(friends);
                 } else {
                     showMessageError(response.body().getMessage());
@@ -109,7 +112,7 @@ public class FriendsFragment extends BaseFragment {
         Comparator<Friend> comparator = new Comparator<Friend>() {
             @Override
             public int compare(Friend left, Friend right) {
-                return typeSort == 0 ? left.getTotalTravel() - right.getTotalTravel() : left.getTotalWeed() - right.getTotalWeed() ;
+                return typeSort == 0 ? left.getTotalTravel() - right.getTotalTravel() : left.getTotalWeed() - right.getTotalWeed();
             }
         };
         Collections.sort(friends, comparator);

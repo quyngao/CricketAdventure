@@ -3,6 +3,7 @@ package com.vppank.cricketadventure.service.api.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 
 public class Transation implements Serializable{
     @SerializedName("balance")
@@ -29,7 +30,8 @@ public class Transation implements Serializable{
         return createdAtString;
     }
 
-    public int getBalance() {
-        return balance;
+    public String getBalance() {
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+        return format.format(balance);
     }
 }

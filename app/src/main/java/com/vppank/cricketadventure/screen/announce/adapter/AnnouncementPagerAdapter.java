@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.vppank.cricketadventure.screen.history.HistoryFragment;
 import com.vppank.cricketadventure.screen.home.HomeFragment;
+import com.vppank.cricketadventure.screen.mission.NewFragment;
 import com.vppank.cricketadventure.screen.notification.NotificationFragment;
 import com.vppank.cricketadventure.service.api.model.Notification;
 

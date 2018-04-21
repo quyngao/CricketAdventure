@@ -45,6 +45,10 @@
 
         </activity>
         <activity
+            android:name=".screen.mission.MissionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".screen.item.ItemActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -87,9 +91,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
-        <provider android:authorities="com.facebook.app.FacebookContentProvider201828170596445"
+        <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true" />
+            android:authorities="com.facebook.app.FacebookContentProvider201828170596445"
+            android:exported="true"/>
 
         <activity
             android:name=".screen.splash.SplashActivity"

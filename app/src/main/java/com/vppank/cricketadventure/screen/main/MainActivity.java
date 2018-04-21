@@ -2,24 +2,18 @@ package com.vppank.cricketadventure.screen.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.squareup.picasso.Picasso;
 import com.google.firebase.database.DataSnapshot;
@@ -32,25 +26,18 @@ import com.vppank.cricketadventure.R;
 import com.vppank.cricketadventure.app.CricketApplication;
 import com.vppank.cricketadventure.screen.announce.AnnouncemetFragment;
 import com.vppank.cricketadventure.screen.common.BaseActivity;
-import com.vppank.cricketadventure.screen.history.HistoryFragment;
 import com.vppank.cricketadventure.screen.home.HomeFragment;
 import com.vppank.cricketadventure.screen.item.ItemActivity;
 import com.vppank.cricketadventure.screen.meo.MeoFragment;
-import com.vppank.cricketadventure.screen.notification.NotificationFragment;
+import com.vppank.cricketadventure.screen.mission.NewFragment;
 import com.vppank.cricketadventure.screen.shopping.ShoppingActivity;
-import com.vppank.cricketadventure.screen.social.FriendsFragment;
 import com.vppank.cricketadventure.screen.social.SocialFragment;
 import com.vppank.cricketadventure.screen.splash.SplashActivity;
-import com.vppank.cricketadventure.service.api.ApiClient;
-import com.vppank.cricketadventure.service.api.model.GetUserResponse;
 import com.vppank.cricketadventure.service.api.model.User;
 import com.vppank.cricketadventure.storage.share.UserInfo;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
@@ -128,10 +115,10 @@ public class MainActivity extends BaseActivity
             replaceFragment(new AnnouncemetFragment(), R.id.container, "announcement");
             setTitle(item.getTitle());
         } else if (id == R.id.action_meo) {
-            replaceFragment(new FriendsFragment(), R.id.container, "meo");
+            replaceFragment(new MeoFragment(), R.id.container, "meo");
             setTitle(item.getTitle());
         } else if (id == R.id.action_notification) {
-            replaceFragment(new NotificationFragment(), R.id.container, "notification");
+            replaceFragment(new NewFragment(), R.id.container, "notification");
             setTitle(item.getTitle());
         } else if (id == R.id.action_social) {
             replaceFragment(new SocialFragment(), R.id.container, "social");
