@@ -1,7 +1,9 @@
 package com.vppank.cricketadventure.screen.shopping;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.view.MenuItem;
 
 import com.vppank.cricketadventure.R;
 import com.vppank.cricketadventure.screen.common.BaseActivity;
@@ -21,6 +23,18 @@ public class ShoppingActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        android.support.v7.app.ActionBar bar = getSupportActionBar();
+        bar.setDisplayHomeAsUpEnabled(true);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
