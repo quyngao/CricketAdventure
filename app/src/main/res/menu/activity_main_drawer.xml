@@ -5,25 +5,8 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Trang Chủ"/>
-        <item
-            android:id="@+id/nav_rate"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Đánh giá VP MeO"/>
-        <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Chia sẻ"/>
-        <item
-            android:id="@+id/nav_feedback"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Phản hồi"/>
-
-        <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_reply_black_24dp"
             android:title="Đăng xuất"/>
     </group>
 </menu>

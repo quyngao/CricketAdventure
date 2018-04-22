@@ -33,4 +33,8 @@
     <string name="skip">Bỏ qua</string>
     <string name="start">Hoàn thành</string>
 
+    <string name="onest">🥇</string>
+    <string name="twost">🥈</string>
+    <string name="threest">🥉</string>
+
 </resources>

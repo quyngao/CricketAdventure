@@ -30,6 +30,9 @@ public class FriendHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.weed)
     protected TextView weed;
 
+    @BindView(R.id.txtRank)
+    protected TextView rank;
+
     Friend friend;
 
 
@@ -42,12 +45,27 @@ public class FriendHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void render(Friend friend) {
+    public void render(Friend friend, int position) {
         this.friend = friend;
         title.setText(friend.getName());
         weed.setText(String.format("Thu thập: %d \uD83C\uDF40", friend.getTotalWeed()));
         travel.setText(String.format("Khám phá: %d km", friend.getTotalTravel()));
         Picasso.get().load(friend.getAvatar()).into(imageType);
+        if (position == 0) {
+            rank.setVisibility(View.VISIBLE);
+            rank.setText(itemView.getContext().getText(R.string.onest));
+        }
+        if (position == 1){
+            rank.setVisibility(View.VISIBLE);
+            rank.setText(itemView.getContext().getText(R.string.twost));
+        }
+        if (position == 2){
+            rank.setVisibility(View.VISIBLE);
+            rank.setText(itemView.getContext().getText(R.string.threest));
+        }
+        if (position > 2){
+            rank.setVisibility(View.INVISIBLE);
+        }
     }
 
 

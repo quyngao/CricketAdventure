@@ -34,7 +34,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendHolder> {
     @Override
     public void onBindViewHolder(FriendHolder holder, int position) {
         Friend friend = friends.get(position);
-        holder.render(friend);
+        holder.render(friend, position);
     }
 
     @Override

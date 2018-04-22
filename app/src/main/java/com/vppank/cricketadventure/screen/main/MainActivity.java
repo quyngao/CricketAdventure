@@ -96,26 +96,13 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-
-        if (id == R.id.nav_home) {
-            replaceFragment(new HomeFragment(), R.id.container, "home");
-            drawer.closeDrawer(GravityCompat.START);
-
-        } else if (id == R.id.nav_logout) {
+        if (id == R.id.nav_logout) {
             drawer.closeDrawer(GravityCompat.START);
             CricketApplication.getPrefManager().clearPreferences();
             startActivity(SplashActivity.newIntent(this));
             LoginManager.getInstance().logOut();
             finish();
 
-        } else if (id == R.id.nav_rate) {
-            drawer.closeDrawer(GravityCompat.START);
-
-        } else if (id == R.id.nav_feedback) {
-            drawer.closeDrawer(GravityCompat.START);
-
-        } else if (id == R.id.nav_share) {
-            drawer.closeDrawer(GravityCompat.START);
         }
         //else if (id == R.id.action_home) {
 //            Log.d("quydz", "home");

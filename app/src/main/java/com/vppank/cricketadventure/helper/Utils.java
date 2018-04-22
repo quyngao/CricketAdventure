@@ -71,23 +71,20 @@ public class Utils {
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
 
-//    public static void share(Context context, Article article) {
-//        String builder = "\n\n\nXã Luận VN\n\n" +
-//                "Nội dung: %s\n" +
-//                "Link: %s\n";
-//
-//        String message = String.format(builder, article.getDescription(), article.getLink());
-//
-//        try {
-//
-//            Intent intent = new Intent(Intent.ACTION_SEND);
-//            intent.setType("text/plain");
-//            intent.putExtra(Intent.EXTRA_SUBJECT, article.getTitle());
-//            intent.putExtra(Intent.EXTRA_TEXT, message);
-//            context.startActivity(Intent.createChooser(intent, "Chia sẻ"));
-//        } catch (Exception e) {
-//
-//        }
-//    }
+    public static void share(Context context) {
+        String builder = "asdasdasdasdasd";
+
+
+        try {
+
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_SUBJECT, "https://scontent.fhan2-2.fna.fbcdn.net/v/t1.0-9/31056883_1892487780826653_2025411329787665826_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEzF7seeOK9Qkml9qAs0DEIjl0wXiuBFPk8ISN8y2jTEMGs2pmp6RaOhIA6no88pLMHHJMKy477pj2Oqjkf35Do1nLy1zsaNn_YiXXhd3FUEA&oh=4ecf311795a5ed8ed2f10942a8c411ab&oe=5B548D00");
+            intent.putExtra(Intent.EXTRA_TEXT, builder);
+            context.startActivity(Intent.createChooser(intent, "Chia sẻ"));
+        } catch (Exception e) {
+
+        }
+    }
 
 }

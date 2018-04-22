@@ -17,7 +17,9 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.share.ShareApi;
 import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareContent;
 import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.ShareMediaContent;
 import com.facebook.share.model.ShareOpenGraphAction;
 import com.facebook.share.model.ShareOpenGraphContent;
 import com.facebook.share.model.SharePhoto;
@@ -26,6 +28,7 @@ import com.facebook.share.widget.ShareDialog;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.vppank.cricketadventure.R;
+import com.vppank.cricketadventure.helper.Utils;
 import com.vppank.cricketadventure.service.api.model.Mail;
 
 public class ShareImageDialog extends DialogFragment {
@@ -71,7 +74,6 @@ public class ShareImageDialog extends DialogFragment {
                                         .build();
                                 ShareDialog shareDialog = new ShareDialog(getActivity());
                                 shareDialog.show(content, ShareDialog.Mode.AUTOMATIC);
-
                             }
 
                             @Override
